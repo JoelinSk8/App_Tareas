@@ -22,6 +22,11 @@ Variables de entorno opcionales:
 | `VAPID_PUBLIC_KEY` / `VAPID_PRIVATE_KEY` | Claves VAPID. Si faltan, se generan y guardan en `data/vapid.json` |
 | `VAPID_SUBJECT` | `mailto:` de contacto para VAPID |
 | `DATA_DIR` | Carpeta de datos |
+| `CRON_SECRET` | Activa `GET /api/cron?key=...`, para que un cron del hosting dispare los avisos |
+
+## Despliegue
+
+Guía paso a paso para hosting con cPanel: [DEPLOY.md](DEPLOY.md).
 
 ## Requisito clave: HTTPS
 
@@ -43,4 +48,4 @@ Las notificaciones push solo funcionan en **HTTPS** (`localhost` está exento). 
 
 ## Limitaciones
 
-Es una app de un solo usuario/equipo (todas las tareas se comparten entre los dispositivos suscritos). Para cuentas separadas habría que añadir usuarios.
+Cada navegador es un usuario anónimo (token secreto en `localStorage`): las tareas no se sincronizan entre dispositivos ni hay registro con correo. Para eso habría que añadir cuentas.

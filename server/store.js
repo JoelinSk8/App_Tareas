@@ -3,6 +3,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 // Almacenamiento simple en un archivo JSON (escritura atómica).
+// Tareas y suscripciones pertenecen a un usuario (userId) para que nadie vea los datos de otro.
 function createStore(dir) {
   fs.mkdirSync(dir, { recursive: true });
   const file = path.join(dir, 'db.json');
@@ -15,11 +16,16 @@ function createStore(dir) {
     fs.renameSync(tmp, file);
   }
 
+  const mine = (userId, id) => db.tasks.find((t) => t.id === id && t.userId === userId);
+
   return {
-    listTasks: () => db.tasks,
-    addTask({ title, notes = '', due = null, remindBefore = 0 }) {
+    listTasks: (userId) => db.tasks.filter((t) => t.userId === userId),
+    countTasks: (userId) => db.tasks.filter((t) => t.userId === userId).length,
+    allTasks: () => db.tasks, // solo para el planificador interno
+    addTask(userId, { title, notes = '', due = null, remindBefore = 0 }) {
       const task = {
         id: crypto.randomUUID(),
+        userId,
         title,
         notes,
         due,
@@ -32,8 +38,8 @@ function createStore(dir) {
       save();
       return task;
     },
-    updateTask(id, patch) {
-      const task = db.tasks.find((t) => t.id === id);
+    updateTask(userId, id, patch) {
+      const task = mine(userId, id);
       if (!task) return null;
       for (const k of ['title', 'notes', 'due', 'remindBefore', 'done']) if (k in patch) task[k] = patch[k];
       // Si cambia la fecha o la antelación, se vuelve a notificar.
@@ -48,19 +54,26 @@ function createStore(dir) {
         save();
       }
     },
-    deleteTask(id) {
+    deleteTask(userId, id) {
       const n = db.tasks.length;
-      db.tasks = db.tasks.filter((t) => t.id !== id);
+      db.tasks = db.tasks.filter((t) => !(t.id === id && t.userId === userId));
       save();
       return db.tasks.length < n;
     },
-    listSubscriptions: () => db.subscriptions,
-    addSubscription(sub) {
+    listSubscriptions: (userId) => db.subscriptions.filter((s) => s.userId === userId),
+    countSubscriptions: (userId) => db.subscriptions.filter((s) => s.userId === userId).length,
+    addSubscription(userId, sub) {
+      // Un mismo endpoint pertenece a un solo usuario (el último que lo registra).
       db.subscriptions = db.subscriptions.filter((s) => s.endpoint !== sub.endpoint);
-      db.subscriptions.push(sub);
+      db.subscriptions.push({ ...sub, userId });
       save();
     },
-    removeSubscription(endpoint) {
+    removeSubscription(userId, endpoint) {
+      db.subscriptions = db.subscriptions.filter((s) => !(s.endpoint === endpoint && s.userId === userId));
+      save();
+    },
+    // Borrado por caducidad del servicio push (404/410), sin importar el usuario.
+    dropEndpoint(endpoint) {
       db.subscriptions = db.subscriptions.filter((s) => s.endpoint !== endpoint);
       save();
     },

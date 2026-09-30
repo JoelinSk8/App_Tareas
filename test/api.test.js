@@ -7,6 +7,9 @@ const webpush = require('web-push');
 const { createApp } = require('../server/index');
 const { createStore } = require('../server/store');
 
+const TOKEN_A = 'a'.repeat(64);
+const TOKEN_B = 'b'.repeat(64);
+
 function setup() {
   const sent = [];
   const sender = {
@@ -21,15 +24,15 @@ function setup() {
   return new Promise((resolve) => {
     const server = ctx.app.listen(0, () => {
       const base = `http://localhost:${server.address().port}/api`;
-      const call = async (method, url, body) => {
+      const callAs = (token) => async (method, url, body) => {
         const r = await fetch(base + url, {
           method,
-          headers: { 'content-type': 'application/json' },
+          headers: { 'content-type': 'application/json', ...(token ? { 'x-user-token': token } : {}) },
           body: body ? JSON.stringify(body) : undefined,
         });
         return { status: r.status, body: r.status === 204 ? null : await r.json() };
       };
-      resolve({ call, sent, store, ctx, close: () => server.close() });
+      resolve({ call: callAs(TOKEN_A), callB: callAs(TOKEN_B), callAnon: callAs(null), sent, store, ctx, close: () => server.close() });
     });
   });
 }
@@ -78,7 +81,7 @@ test('elimina suscripciones caducadas (410)', async () => {
   await t.call('POST', '/subscribe', sub('ok'));
   const res = await t.call('POST', '/test-push');
   assert.strictEqual(res.body.sent, 1);
-  assert.deepStrictEqual(t.store.listSubscriptions().map((s) => s.endpoint), ['https://push.example/ok']);
+  assert.deepStrictEqual(t.store.listSubscriptions(require('crypto').createHash('sha256').update(TOKEN_A).digest('hex')).map((s) => s.endpoint), ['https://push.example/ok']);
   t.close();
 });
 
@@ -117,5 +120,28 @@ test('remindBefore inválido se rechaza', async () => {
   const ok = (await t.call('POST', '/tasks', { title: 'x' })).body;
   assert.strictEqual(ok.remindBefore, 0);
   assert.strictEqual((await t.call('PATCH', '/tasks/' + ok.id, { remindBefore: -5 })).status, 400);
+  t.close();
+});
+
+test('cada usuario solo ve y modifica sus propios datos', async () => {
+  const t = await setup();
+  const a = (await t.call('POST', '/tasks', { title: 'de A' })).body;
+  await t.callB('POST', '/tasks', { title: 'de B' });
+  assert.deepStrictEqual((await t.call('GET', '/tasks')).body.map((x) => x.title), ['de A']);
+  assert.deepStrictEqual((await t.callB('GET', '/tasks')).body.map((x) => x.title), ['de B']);
+  assert.strictEqual((await t.callB('PATCH', '/tasks/' + a.id, { done: true })).status, 404);
+  assert.strictEqual((await t.callB('DELETE', '/tasks/' + a.id)).status, 404);
+  assert.strictEqual('userId' in a, false); // no se expone el id interno
+  assert.strictEqual((await t.callAnon('GET', '/tasks')).status, 400); // sin token
+  t.close();
+});
+
+test('los avisos solo llegan a las suscripciones de su dueño', async () => {
+  const t = await setup();
+  await t.call('POST', '/subscribe', sub('a'));
+  await t.callB('POST', '/subscribe', sub('b'));
+  await t.call('POST', '/tasks', { title: 'de A', due: new Date(Date.now() - 1000).toISOString() });
+  await t.ctx.checkDue();
+  assert.deepStrictEqual(t.sent.map((s) => s.sub.endpoint), ['https://push.example/a']);
   t.close();
 });

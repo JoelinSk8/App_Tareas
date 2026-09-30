@@ -3,9 +3,19 @@ let tasks = [];
 let filter = 'pending';
 
 // ---------- API ----------
+// Identidad anónima: token secreto aleatorio guardado en este navegador.
+function userToken() {
+  let t = localStorage.getItem('userToken');
+  if (!/^[a-f0-9]{64}$/.test(t || '')) {
+    t = Array.from(crypto.getRandomValues(new Uint8Array(32)), (b) => b.toString(16).padStart(2, '0')).join('');
+    localStorage.setItem('userToken', t);
+  }
+  return t;
+}
+
 function authHeader() {
   const p = localStorage.getItem('appPassword');
-  return p ? { 'x-app-password': p } : {};
+  return { 'x-user-token': userToken(), ...(p ? { 'x-app-password': p } : {}) };
 }
 
 async function api(method, url, body) {
