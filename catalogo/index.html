@@ -1,292 +1,402 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Catálogo Frutosa · Pulpagro</title>
+<title>Frutosa · Pulpagro — Product Catalog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style id="css">
-:root{--g:#2f7d32;--g2:#6aa84f;--o:#f59e0b;--o2:#ea580c;--ink:#1f2937;--mut:#6b7280;--bg:#f6f8f3;--card:#fff;--line:#e5e9df}
+:root{--g:#1f6f2e;--g2:#57a83a;--o:#f59e0b;--o2:#ea580c;--ink:#1c2b1f;--mut:#667085;--bg:#f5f8f1;--card:#fff;--line:#e3e9dc}
 *{box-sizing:border-box}
-body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;color:var(--ink);background:var(--bg);-webkit-print-color-adjust:exact;print-color-adjust:exact}
-a{color:inherit}
-.page{max-width:1100px;margin:0 auto;padding:0 18px 40px}
-header.hero{background:linear-gradient(135deg,#1e5e24,#4c9a2a 55%,#f59e0b);color:#fff;border-radius:0 0 28px 28px;padding:28px 24px 34px;text-align:center;position:relative;overflow:hidden}
-header.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.12)}
-.hero .logo{max-height:110px;max-width:320px;background:#fff;border-radius:18px;padding:10px 18px;margin-bottom:12px}
-.hero h1{margin:6px 0 2px;font-size:clamp(24px,4vw,38px);letter-spacing:.5px}
-.hero p{margin:0;opacity:.92}
-h2.sec{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;color:var(--g)}
-h2.sec small{font-weight:500;text-transform:none;letter-spacing:0;color:var(--mut);font-size:13px}
-h2.sec:before{content:"";width:6px;height:22px;border-radius:3px;background:linear-gradient(var(--o),var(--o2))}
-section.blk{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:22px;box-shadow:0 4px 18px rgba(30,60,20,.06);position:relative;break-inside:avoid}
-.certs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.col{border:1px solid var(--line);border-radius:16px;padding:14px;background:linear-gradient(#fff,#f9fbf6);position:relative}
-.col h3{margin:0 0 10px;display:flex;align-items:center;gap:10px;font-size:17px;color:var(--g)}
-.col h3 img{height:38px;max-width:140px;object-fit:contain}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Poppins,"Segoe UI",system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+a{color:inherit}button{font-family:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+/* HERO */
+.hero{position:relative;color:#fff;background:linear-gradient(135deg,#0f4d1c,#2f8a34 55%,#f59e0b);background-size:cover;background-position:center;padding:56px 0 70px;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px)}
+.hero:before{width:380px;height:380px;right:-110px;top:-120px;background:rgba(255,255,255,.10)}
+.hero:after{width:240px;height:240px;left:-80px;bottom:-110px;background:rgba(245,158,11,.25)}
+.hero .wrap{position:relative;z-index:1;text-align:center}
+.eyebrow{display:inline-block;padding:6px 16px;border-radius:999px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.hero h1{margin:16px 0 8px;font-size:clamp(30px,5.5vw,58px);line-height:1.08;font-weight:800;letter-spacing:-.5px}
+.hero p.sub{margin:0 auto;max-width:640px;font-size:clamp(15px,2vw,18px);opacity:.95}
+.cocards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px;text-align:left}
+.cocard{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:block;background:rgba(255,255,255,.96);color:var(--ink);border-radius:22px;padding:20px 22px;border-top:6px solid var(--c);box-shadow:0 14px 40px rgba(0,0,0,.22);transition:.2s}
+.cocard:hover{transform:translateY(-5px)}
+.cocard .top{display:flex;align-items:center;gap:14px}
+.cocard img.lg{height:54px;max-width:120px;object-fit:contain}
+.cocard h2{margin:0;font-size:24px;color:var(--c)}
+.cocard .tag{font-size:13px;color:var(--mut)}
+.cocard .meta{margin-top:12px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600}
+.cocard .meta b{background:var(--c);color:#fff;border-radius:999px;padding:3px 12px}
+.cocard .meta span{color:var(--c)}
+.cocard .minis{margin-top:12px}
+/* SECCIONES */
+section.s{padding:52px 0 8px}
+.stitle{text-align:center;margin-bottom:26px}
+.stitle h2{margin:0;font-size:clamp(24px,3.6vw,36px);font-weight:800}
+.stitle h2 span{background:linear-gradient(90deg,var(--g),var(--o2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stitle p{margin:8px auto 0;max-width:680px;color:var(--mut)}
+.certs{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cocol{background:var(--card);border-radius:22px;padding:22px;border:1px solid var(--line);border-top:6px solid var(--c);box-shadow:0 8px 28px rgba(30,60,20,.08);position:relative}
+.cohead{display:flex;align-items:center;gap:14px;margin-bottom:16px;border-radius:14px}
+.cohead img{height:50px;max-width:110px;object-fit:contain}
+.cohead h3{margin:0;font-size:22px;color:var(--c)}
+.cohead p{margin:0;font-size:13px;color:var(--mut)}
+.cohead .count{margin-left:auto;background:var(--c);color:#fff;border-radius:999px;padding:4px 14px;font-size:12px;font-weight:700;white-space:nowrap}
 .logos{display:flex;flex-wrap:wrap;gap:10px}
-.logo-item{width:92px;text-align:center;position:relative;text-decoration:none;border-radius:12px;padding:6px;transition:.15s}
-a.logo-item:hover,.logo-item.edit:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.12);background:#fff}
-.logo-item .im{height:56px;display:flex;align-items:center;justify-content:center}
-.logo-item img{max-width:100%;max-height:56px;object-fit:contain}
-.logo-item span{display:block;font-size:11px;color:var(--mut);margin-top:3px;line-height:1.15}
-.ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-height:54px;border-radius:10px;background:repeating-linear-gradient(45deg,#f1f5ec,#f1f5ec 8px,#e7eedf 8px,#e7eedf 16px);color:#8a9a7b;font-size:11px;font-weight:600;text-align:center;padding:4px}
-.empty{color:var(--mut);font-size:13px;font-style:italic;padding:14px 4px}
-.bul{margin:0 0 14px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
-.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:999px;background:#eef6e8;border:1px solid #d5e7c8;font-size:13px;text-decoration:none;position:relative}
-a.chip{color:var(--g);font-weight:600}
-a.chip:hover{background:var(--g);color:#fff}
-a.chip:after{content:"↗";font-size:11px;opacity:.7}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
-.prod{position:relative;text-align:center;border-radius:16px;padding:8px;transition:.15s}
-.prod:hover{background:#fafcf7}
-.prod .pim{aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#f3f6ee;border:1px solid var(--line)}
-.prod .pim img{width:100%;height:100%;object-fit:cover;display:block;transition:.3s}
-.prod:hover .pim img{transform:scale(1.06)}
-.prod .nm{font-weight:700;font-size:13px;margin:8px 0 4px}
-.links{display:flex;flex-direction:column;gap:4px;align-items:center}
-.links .chip{font-size:11px;padding:3px 10px;background:#fff7e6;border-color:#fde2a7}
-.links a.chip{color:#b45309}
-.links a.chip:hover{background:var(--o);color:#fff}
-footer.foot{text-align:center;color:#7a8b68;font-weight:600;font-size:13px;margin-top:28px}
-/* barra */
-.bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:8px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.clogo{width:96px;text-align:center;text-decoration:none;border-radius:14px;padding:8px 4px;position:relative;border:1px solid transparent;transition:.15s}
+a.clogo:hover,.clogo.editable:hover{transform:translateY(-3px);border-color:var(--line);box-shadow:0 8px 18px rgba(0,0,0,.1);background:#fff}
+.clogo .im{height:58px;display:flex;align-items:center;justify-content:center}
+.clogo img{max-width:100%;max-height:58px;object-fit:contain}
+.clogo span{display:block;font-size:11px;color:var(--mut);margin-top:4px;line-height:1.15}
+.ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-height:54px;border-radius:12px;background:repeating-linear-gradient(45deg,#f1f5ec,#f1f5ec 8px,#e7eedf 8px,#e7eedf 16px);color:#8a9a7b;font-size:11px;font-weight:600;text-align:center;padding:4px}
+.empty{color:var(--mut);font-size:14px;font-style:italic;padding:16px 4px;text-align:center;grid-column:1/-1}
+/* CATALOGO */
+.tb{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;margin-bottom:24px}
+.seg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.seg button{border:0;background:none;padding:8px 18px;border-radius:999px;font-weight:600;font-size:14px;cursor:pointer;color:var(--mut)}
+.seg button.on{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff}
+.cats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink)}
+.pill:hover{border-color:var(--o)}
+.pill.on{background:linear-gradient(135deg,var(--o),var(--o2));border-color:transparent;color:#fff}
+#q{padding:9px 16px;border:1px solid var(--line);border-radius:999px;font:inherit;font-size:14px;min-width:200px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.card{position:relative;background:var(--card);border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 6px 22px rgba(30,60,20,.07);cursor:pointer;transition:.22s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(30,60,20,.16)}
+.cimg{position:relative;aspect-ratio:4/3;background:#eef3e8;overflow:hidden}
+.cimg>img{width:100%;height:100%;object-fit:cover;display:block;transition:.4s}
+.card:hover .cimg>img{transform:scale(1.07)}
+.cimg .ph{border-radius:0;font-size:14px}
+.cobs{position:absolute;left:10px;top:10px;display:flex;gap:6px;flex-wrap:wrap}
+.cobadge{background:var(--c);color:#fff;border-radius:999px;padding:3px 12px;font-size:11px;font-weight:700;letter-spacing:.3px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.cbody{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.ccat{font-size:11px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--o2)}
+.card h3{margin:0;font-size:18px;line-height:1.25}
+.ctag{font-size:12.5px;color:var(--mut)}
+.minis{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+.mc{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;padding:0 5px;border-radius:9px;background:#fff;border:1.5px solid var(--c);font-size:9px;font-weight:700;color:var(--c)}
+.mc img{max-height:22px;max-width:40px;object-fit:contain}
+.mc.more{border-color:var(--line);color:var(--mut)}
+.more-l{margin-top:auto;padding-top:8px;font-size:13px;font-weight:700;color:var(--g)}
+/* MODAL PRODUCTO */
+.pov{position:fixed;inset:0;background:rgba(10,30,14,.65);backdrop-filter:blur(4px);z-index:150;display:flex;align-items:center;justify-content:center;padding:16px;animation:fi .2s}
+@keyframes fi{from{opacity:0}}
+.pm{background:#fff;border-radius:26px;max-width:940px;width:100%;max-height:94vh;overflow:auto;display:grid;grid-template-columns:1fr 1.1fr;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.pm .pi{background:#eef3e8;min-height:320px;position:relative}
+.pm .pi img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.pm .pi .ph{position:absolute;inset:0;border-radius:0;font-size:16px}
+.pm .pc{padding:26px 26px 24px}
+.pm h2{margin:8px 0 4px;font-size:28px;line-height:1.15}
+.pm .x{position:absolute;right:12px;top:10px;z-index:3;border:0;background:#fff;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.pm .cobs{position:static;margin-bottom:4px}
+.pm .desc{white-space:pre-line;color:#3b4a3e;margin:10px 0}
+.pm h4{margin:18px 0 8px;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--g)}
+.specs{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;margin:0}
+.specs dt{font-weight:700;color:var(--mut)}.specs dd{margin:0}
+.specs .full{grid-column:1/-1}
+.cgrp{margin-bottom:10px;padding:10px 12px;border-radius:14px;background:#f8faf5;border-left:5px solid var(--c)}
+.cgrp b{display:block;font-size:12px;color:var(--c);margin-bottom:6px}
+.cgrp .logos{gap:6px}.cgrp .clogo{width:78px;padding:4px 2px}.cgrp .clogo .im{height:42px}.cgrp .clogo img{max-height:42px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;background:#fff7e6;border:1px solid #fde2a7;font-size:13px;font-weight:600;text-decoration:none;color:#b45309}
+a.chip:hover{background:var(--o);color:#fff}
+a.chip:after{content:"↗";font-size:11px}
+.quote{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);align-items:center}
+.quote span{font-weight:700;margin-right:auto}
+.qb{padding:10px 20px;border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;color:#fff}
+.qb.wa{background:#25a244}.qb.mail{background:linear-gradient(135deg,var(--o),var(--o2))}
+/* FOOTER */
+footer.ft{margin-top:56px;background:#10341a;color:#d9ead3;padding:34px 0;text-align:center}
+footer.ft .cts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+footer.ft .qb{background:rgba(255,255,255,.14)}
+footer.ft .qb.wa{background:#25a244}
+.pdfview{display:none}
+/* BARRA EDITOR */
+.bar{position:sticky;top:0;z-index:120;background:rgba(255,255,255,.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:8px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .bar b{color:var(--g);margin-right:auto}
-.btn{border:0;border-radius:10px;padding:8px 14px;font:600 13px inherit;font-family:inherit;cursor:pointer;background:#eef2ea;color:var(--ink)}
+.btn{border:0;border-radius:10px;padding:8px 14px;font:600 13px Poppins,sans-serif;cursor:pointer;background:#eef2ea;color:var(--ink)}
 .btn:hover{filter:brightness(.95)}
 .btn.pri{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff}
 .btn.org{background:linear-gradient(135deg,var(--o),var(--o2));color:#fff}
 .btn.dan{background:#fee2e2;color:#b91c1c}
 .btn.on{background:#111827;color:#fff}
-/* controles de edición */
-.editing .editable{outline:2px dashed transparent;cursor:pointer}
+.editing .editable{outline:2px dashed transparent;outline-offset:2px}
 .editing .editable:hover{outline-color:var(--o)}
-.ctl{display:none;position:absolute;top:-10px;right:-6px;z-index:5;gap:2px;background:#111827;border-radius:8px;padding:2px}
-.editing .editable:hover>.ctl,.editing .sctl{display:flex}
+.ctl{display:none;position:absolute;top:6px;right:6px;z-index:6;gap:2px;background:#111827;border-radius:8px;padding:2px}
+.editing .editable:hover>.ctl,.editing .editable:hover .ctl:first-of-type{display:flex}
 .ctl button{border:0;background:none;color:#fff;cursor:pointer;padding:2px 6px;font-size:13px}
 .ctl button:hover{color:var(--o)}
-.sctl{display:none;position:absolute;top:-12px;right:14px;z-index:5;gap:2px;background:#111827;border-radius:10px;padding:3px}
-.sctl button{border:0;background:none;color:#fff;cursor:pointer;padding:3px 8px;font-size:13px}
-.addbar{display:none;gap:8px;margin-top:14px;flex-wrap:wrap}
+.addbar{display:none;gap:8px;margin-top:14px;flex-wrap:wrap;justify-content:center}
 .editing .addbar{display:flex}
-.add{border:2px dashed #b9cfa6;background:#fbfdf8;color:var(--g);border-radius:12px;padding:8px 14px;font-weight:600;cursor:pointer;font-family:inherit}
+.add{border:2px dashed #b9cfa6;background:#fbfdf8;color:var(--g);border-radius:12px;padding:8px 16px;font-weight:600;cursor:pointer}
 .add:hover{background:#eef6e8}
-/* modal */
-.ov{position:fixed;inset:0;background:rgba(17,24,39,.55);z-index:100;display:flex;align-items:center;justify-content:center;padding:14px}
-.modal{background:#fff;border-radius:18px;max-width:480px;width:100%;max-height:92vh;overflow:auto;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
-.modal h3{margin:0 0 12px}
+.editonly{display:none}.editing .editonly{display:inline-block}
+.ov{position:fixed;inset:0;background:rgba(17,24,39,.55);z-index:200;display:flex;align-items:center;justify-content:center;padding:14px}
+.modal{background:#fff;border-radius:18px;max-width:520px;width:100%;max-height:92vh;overflow:auto;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.35);font-family:Poppins,sans-serif}
+.modal h3{margin:0 0 6px}
 .modal label{display:block;font-size:12px;font-weight:700;color:var(--mut);margin:12px 0 4px;text-transform:uppercase;letter-spacing:.5px}
-.modal input[type=text],.modal input[type=url]{width:100%;padding:9px 11px;border:1px solid #d1d5db;border-radius:10px;font:inherit}
-.modal .row{display:flex;gap:6px;margin-bottom:6px}
-.modal .row input{flex:1}
+.modal input[type=text],.modal input[type=url],.modal select,.modal textarea{width:100%;padding:9px 11px;border:1px solid #d1d5db;border-radius:10px;font:inherit;font-size:14px}
+.modal textarea{min-height:84px;resize:vertical}
+.modal input[type=color]{width:60px;height:38px;border:0;padding:0;background:none}
+.modal .row{display:flex;gap:6px;margin-bottom:6px}.modal .row input{flex:1}
 .modal .imgp{height:110px;border:1px dashed #c7d2bf;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#fafcf7;overflow:hidden}
 .modal .imgp img{max-width:100%;max-height:100%}
 .modal .acts{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}
+.modal .chk{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:14px}
+.modal .chk b{font-size:11px;color:#fff;border-radius:999px;padding:1px 8px}
 .qrbox{text-align:center}.qrbox img{width:240px;height:240px;image-rendering:pixelated}
 .hint{font-size:12px;color:var(--mut);margin-top:6px}
-.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 18px;border-radius:12px;z-index:200;font-size:14px}
-@media(max-width:700px){.certs{grid-template-columns:1fr}}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 18px;border-radius:12px;z-index:300;font-size:14px}
+@media(max-width:760px){.cocards,.certs{grid-template-columns:1fr}.pm{grid-template-columns:1fr}.pm .pi{min-height:220px}.cohead .count{display:none}}
+/* IMPRESION / PDF */
 @media print{
  @page{size:A4;margin:10mm}
- body{background:#fff}.no-print,.bar,.ctl,.sctl,.addbar{display:none!important}
- header.hero{border-radius:14px}section.blk{box-shadow:none;break-inside:avoid}
- .page{max-width:none;padding:0}
+ body{background:#fff}.bar,.interactive,.ctl,.addbar,.pov,.editonly{display:none!important}
+ .hero{padding:26px 0 30px}.cocard{box-shadow:none;border:1px solid #ddd;border-top:6px solid var(--c)}
+ .cocol,.pc{break-inside:avoid;box-shadow:none}
+ section.s{padding-top:24px}
+ .pdfview{display:block}
+ .pdfview h2.cat{margin:26px 0 12px;font-size:20px;color:var(--g);border-bottom:3px solid var(--o);padding-bottom:4px;break-after:avoid}
+ .pdfgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+ .pc{display:grid;grid-template-columns:120px 1fr;gap:12px;border:1px solid var(--line);border-radius:14px;padding:10px;background:#fff}
+ .pci{position:relative;min-height:100px;border-radius:10px;overflow:hidden;background:#eef3e8}
+ .pci img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+ .pc h4{margin:4px 0;font-size:15px}.pc p{margin:2px 0;font-size:11px;color:#444}
+ .pc .cobs{position:static}.pc .logos{gap:4px}.pc .clogo{width:60px;padding:2px}.pc .clogo .im{height:32px}.pc .clogo img{max-height:32px}.pc .clogo span{font-size:8px}
+ .pc .chip{padding:2px 8px;font-size:10px}
+ footer.ft{margin-top:20px}
 }
 </style>
 </head>
 <body>
-<div id="bar" class="bar no-print"></div>
+<div id="bar" class="bar"></div>
 <div id="app"></div>
-<script src="qrcode.js"></script>
-<script id="appjs">
-const KEY='frutosa-catalog-v1';
-const L=(name,url)=>({name,url:url||'',img:''});
-const P=(name,links)=>({name,img:'',links:(links||[]).map(t=>({text:t,url:''}))});
-const DEFAULT={
- title:'Frutosa · Pulpagro',subtitle:'Frutas de exportación del Perú · Premium Peruvian fruit',logo:'',
- footer:'Fundo Alexander Nro. Sn Cpm Tongorrape - Motupe - Lambayeque - Perú',pdfUrl:'',
- certs:[
-  {name:'Frutosa',logo:'',items:['BRCGS','IFS','FDA','SGF','SENASA','Control Union','Agrana','Naturland','Sedex','SMETA','Sludge Cert.','USDA Organic','EU Organic','Demeter','EcoVadis'].map(n=>L(n))},
-  {name:'Pulpagro',logo:'',items:[]}
- ],
- sections:[
-  {title:'Frozen PFJ',sub:'(Conventional/Organic)',
-   bullets:['Non from concentrate (NFC)','Concentrate','Waterphase','Unpasteurized','Unpasteurized with seed'].map(t=>({text:t,url:''})),
-   items:[P('Passion fruit flower'),P('Passion fruit'),P('Passion fruit juice'),P('Drum')]},
-  {title:'Frozen Pulps',sub:'(Conventional/Organic)',bullets:[],
-   items:[P('Chato de Ica',['Unpasteurized','Pasteurized NFC','Concentrate']),P('Criollo',['Unpasteurized','Pasteurized NFC','Concentrate']),P('Kent',['Unpasteurized','Pasteurized NFC','Concentrate']),P('Edward',['Pasteurized NFC']),P('Haden',['Pasteurized NFC']),P('Physalis Goldenberry',['Pasteurized NFC'])]},
-  {title:'IQF',sub:'(Conventional/Organic)',bullets:[],
-   items:[P('Mango Edward',['Chunks | Edward']),P('Mango Kent',['Chunks | Kent','Halves | Kent']),P('Avocado',['Chunks | Avocado','Halves | Avocado','Puree | Avocado']),P('Organic Banana',['Slices | Organic Banana']),P('Ginger',['Ginger | IQF']),P('Physalis / Goldenberry',['Physalis / Goldenberry IQF']),P('Pomegranate',['Pomegranate | IQF']),P('Blueberry',['Blueberry | IQF'])]}
- ]
-};
-let S,editing=false;
-try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
-if(!S)S=JSON.parse(JSON.stringify(DEFAULT));
-const isViewOnly=new URLSearchParams(location.search).has('view');
-
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('⚠ Memoria llena: usa imágenes más pequeñas o enlaces de imagen')}}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+<script id="viewjs">
+/* ===== VISTA DEL CATÁLOGO (se incluye tal cual en la web exportada) ===== */
+var editing=false,F={co:'all',cat:'all',q:''};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function safeUrl(u){u=(u||'').trim();if(!u)return'';return /^(https?:|mailto:)/i.test(u)?u:(/^[\w.-]+\.[a-z]{2,}/i.test(u)?'https://'+u:'')}
-function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),2600)}
-function mv(a,i,d){const j=i+d;if(j<0||j>=a.length)return;[a[i],a[j]]=[a[j],a[i]];commit()}
-function commit(){save();render()}
-
-/* ---------- render (devuelve HTML string; editing añade marcas data-*) ---------- */
-function ph(t){return `<div class="ph">${esc(t)}</div>`}
-function im(src,t){return src?`<img src="${esc(src)}" alt="${esc(t)}" loading="lazy">`:ph(t)}
-function ctl(path,arr){return editing?`<div class="ctl"><button data-a="l" data-p="${path}" title="Mover atrás">◀</button><button data-a="r" data-p="${path}" title="Mover adelante">▶</button><button data-a="d" data-p="${path}" title="Eliminar">✕</button></div>`:''}
-function chip(text,url,path){
- const u=safeUrl(url);const inner=esc(text);
- const c=editing?`<span class="chip editable" data-e="${path}">${inner}${u?' 🔗':' ➕'}${ctl(path)}</span>`
-  :(u?`<a class="chip" href="${esc(u)}" target="_blank" rel="noopener">${inner}</a>`:`<span class="chip">${inner}</span>`);
- return c}
+function ph(t){return '<div class="ph">'+esc(t)+'</div>'}
+function im(src,t){return src?'<img src="'+esc(src)+'" alt="'+esc(t)+'" loading="lazy">':ph(t)}
+function findCert(id){for(var i=0;i<S.cos.length;i++){var k=S.cos[i].certs.find(function(x){return x.id===id});if(k)return{cert:k,co:S.cos[i]}}return null}
+function pcos(p){return p.co==='both'?S.cos:S.cos.filter(function(c){return c.id===p.co})}
+function pcerts(p){return(p.certs||[]).map(findCert).filter(Boolean)}
+function nc(n){return n+(n===1?' certification':' certifications')}
+function badge(c){return '<span class="cobadge" style="--c:'+esc(c.color)+'">'+esc(c.name)+'</span>'}
+function ctl(path){return editing?'<div class="ctl"><button data-a="l" data-p="'+path+'" title="Move back">◀</button><button data-a="r" data-p="'+path+'" title="Move forward">▶</button><button data-a="d" data-p="'+path+'" title="Delete">✕</button></div>':''}
+function minis(p){var cs=pcerts(p);if(!cs.length)return'';
+ return '<div class="minis">'+cs.slice(0,6).map(function(x){return '<span class="mc" title="'+esc(x.cert.name)+' · '+esc(x.co.name)+'" style="--c:'+esc(x.co.color)+'">'+(x.cert.img?'<img src="'+esc(x.cert.img)+'" alt="">':esc(x.cert.name.slice(0,5)))+'</span>'}).join('')+(cs.length>6?'<span class="mc more">+'+(cs.length-6)+'</span>':'')+'</div>'}
+function logoLink(x){var u=safeUrl(x.cert.url),b='<div class="im">'+im(x.cert.img,x.cert.name)+'</div><span>'+esc(x.cert.name)+'</span>';
+ return u?'<a class="clogo" href="'+esc(u)+'" target="_blank" rel="noopener" title="View certificate">'+b+'</a>':'<div class="clogo">'+b+'</div>'}
+function filtered(){var q=F.q.trim().toLowerCase();
+ return S.products.map(function(p,i){return{p:p,i:i}}).filter(function(o){var p=o.p;
+  return(F.co==='all'||p.co===F.co||p.co==='both')&&(F.cat==='all'||p.cat===F.cat)&&(!q||[p.name,p.cat,p.tags,p.desc].join(' ').toLowerCase().indexOf(q)>-1)})}
+function card(p,i){
+ return '<article class="card '+(editing?'editable':'')+'" '+(editing?'data-e="p'+i+'" ':'')+'data-v="open" data-i="'+i+'"><div class="cimg">'+im(p.img,p.name)+'<div class="cobs">'+pcos(p).map(badge).join('')+'</div></div><div class="cbody"><div class="ccat">'+esc(p.cat)+'</div><h3>'+esc(p.name)+'</h3>'+(p.tags?'<div class="ctag">'+esc(p.tags)+'</div>':'')+minis(p)+'<div class="more-l">View details →</div></div>'+ctl('p'+i)+'</article>'}
+function gridHTML(){var l=filtered();return l.length?l.map(function(o){return card(o.p,o.i)}).join(''):'<div class="empty">No products found.</div>'}
+function toolbar(){
+ var cos=[{id:'all',name:'All companies'}].concat(S.cos);
+ return '<div class="tb"><div class="seg">'+cos.map(function(c){return '<button class="'+(F.co===c.id?'on':'')+'" data-v="co" data-co="'+esc(c.id)+'">'+esc(c.name)+'</button>'}).join('')+'</div><div class="cats">'+['all'].concat(S.cats).map(function(c){return '<button class="pill '+(F.cat===c?'on':'')+'" data-v="cat" data-cat="'+esc(c)+'">'+(c==='all'?'All products':esc(c))+'</button>'}).join('')+'</div><input id="q" type="search" placeholder="Search products…" value="'+esc(F.q)+'"></div>'}
+function refreshCat(){var t=document.getElementById('tbw'),g=document.getElementById('grid');if(t)t.innerHTML=toolbar();if(g)g.innerHTML=gridHTML()}
+function pdfCard(p){
+ var certs=pcerts(p),links=(p.links||[]).filter(function(l){return l.text});
+ return '<div class="pc"><div class="pci">'+im(p.img,p.name)+'</div><div><div class="cobs">'+pcos(p).map(badge).join('')+'</div><h4>'+esc(p.name)+'</h4>'+(p.tags?'<p><b>'+esc(p.tags)+'</b></p>':'')+(p.desc?'<p>'+esc(p.desc)+'</p>':'')+(certs.length?'<div class="logos">'+certs.map(logoLink).join('')+'</div>':'')+(links.length?'<div class="chips">'+links.map(function(l){var u=safeUrl(l.url);return u?'<a class="chip" href="'+esc(u)+'">'+esc(l.text)+'</a>':'<span class="chip">'+esc(l.text)+'</span>'}).join('')+'</div>':'')+'</div></div>'}
+function pdfHTML(){
+ var cats=S.cats.slice();S.products.forEach(function(p){if(cats.indexOf(p.cat)<0)cats.push(p.cat)});
+ return '<div class="pdfview wrap">'+cats.map(function(c){var l=S.products.filter(function(p){return p.cat===c});
+  return l.length?'<h2 class="cat">'+esc(c)+'</h2><div class="pdfgrid">'+l.map(pdfCard).join('')+'</div>':''}).join('')+'</div>'}
 function renderCatalog(){
- const s=S;
- let h=`<header class="hero ${editing?'editable':''}" ${editing?'data-e="hero"':''}>${s.logo?`<img class="logo" src="${esc(s.logo)}" alt="logo">`:''}<h1>${esc(s.title)}</h1><p>${esc(s.subtitle)}</p></header><div class="page">`;
- h+=`<section class="blk"><h2 class="sec">Certificaciones <small>Haz clic en un logo para ver el certificado</small></h2><div class="certs">`;
- s.certs.forEach((c,ci)=>{
-  h+=`<div class="col"><h3 ${editing?`class="editable" data-e="c${ci}"`:''}>${c.logo?`<img src="${esc(c.logo)}" alt="">`:''}${esc(c.name)}</h3><div class="logos">`;
-  if(!c.items.length&&!editing)h+='';
-  c.items.forEach((it,ii)=>{
-   const p=`c${ci}.${ii}`,u=safeUrl(it.url);
-   const body=`<div class="im">${im(it.img,it.name)}</div><span>${esc(it.name)}</span>`;
-   h+=editing?`<div class="logo-item edit editable" data-e="${p}">${body}${ctl(p)}</div>`
-    :(u?`<a class="logo-item" href="${esc(u)}" target="_blank" rel="noopener" title="Ver certificado">${body}</a>`:`<div class="logo-item">${body}</div>`);
-  });
-  h+=`</div>`;
-  if(editing)h+=`<div class="addbar"><button class="add" data-a="addcert" data-p="${ci}">＋ Logo de certificación</button></div>`;
-  else if(!c.items.length)h+=`<div class="empty">Próximamente…</div>`;
-  h+=`</div>`;
- });
- h+=`</div></section>`;
- s.sections.forEach((sec,si)=>{
-  const sp=`s${si}`;
-  h+=`<section class="blk">${editing?`<div class="sctl"><button data-a="sup" data-p="${si}">▲</button><button data-a="sdn" data-p="${si}">▼</button><button data-a="sed" data-p="${si}">✎ Título</button><button data-a="sdel" data-p="${si}">✕</button></div>`:''}`;
-  h+=`<h2 class="sec">${esc(sec.title)} <small>${esc(sec.sub)}</small></h2>`;
-  if(sec.bullets.length)h+=`<ul class="bul">${sec.bullets.map((b,bi)=>`<li>${chip(b.text,b.url,`${sp}.b${bi}`)}</li>`).join('')}</ul>`;
-  h+=`<div class="grid">`;
-  sec.items.forEach((it,ii)=>{
-   const p=`${sp}.i${ii}`,u=safeUrl(it.url);
-   const pim=`<div class="pim">${im(it.img,it.name)}</div>`;
-   const links=it.links.length?`<div class="links">${it.links.map((l,li)=>chip(l.text,l.url,`${p}.l${li}`)).join('')}</div>`:'';
-   h+=`<div class="prod ${editing?'editable':''}" ${editing?`data-e="${p}"`:''}>${!editing&&u?`<a href="${esc(u)}" target="_blank" rel="noopener">${pim}</a>`:pim}<div class="nm">${esc(it.name)}</div>${editing?`<div class="links">${it.links.map(l=>`<span class="chip">${esc(l.text)}${safeUrl(l.url)?' 🔗':''}</span>`).join('')}</div>`:links}${ctl(p)}</div>`;
-  });
-  h+=`</div>`;
-  if(editing)h+=`<div class="addbar"><button class="add" data-a="addprod" data-p="${si}">＋ Producto / imagen</button><button class="add" data-a="addbul" data-p="${si}">＋ Texto con enlace</button></div>`;
-  h+=`</section>`;
- });
- if(editing)h+=`<div class="addbar" style="justify-content:center;margin-top:22px"><button class="add" data-a="addsec">＋ Nueva sección</button></div>`;
- h+=`<footer class="foot ${editing?'editable':''}" ${editing?'data-e="footer"':''}>${esc(s.footer)}</footer></div>`;
+ var s=S,names=s.cos.map(function(c){return c.name}).join(' and ');
+ var bg=s.bg?'background-image:linear-gradient(135deg,rgba(10,60,22,.88),rgba(30,110,40,.7),rgba(234,88,12,.5)),url(&quot;'+esc(s.bg)+'&quot;)':'';
+ var h='<header class="hero '+(editing?'editable':'')+'" '+(editing?'data-e="hero" ':'')+'style="'+bg+'"><div class="wrap"><span class="eyebrow">'+esc(s.eyebrow)+'</span><h1>'+esc(s.title)+'</h1><p class="sub">'+esc(s.subtitle)+'</p><div class="cocards">';
+ s.cos.forEach(function(c,ci){
+  h+='<button class="cocard '+(editing?'editable':'')+'" '+(editing?'data-e="co'+ci+'" ':'')+'data-v="co" data-co="'+esc(c.id)+'" data-go="1" style="--c:'+esc(c.color)+'"><div class="top">'+(c.logo?'<img class="lg" src="'+esc(c.logo)+'" alt="">':'')+'<div><h2>'+esc(c.name)+'</h2><div class="tag">'+esc(c.tag)+'</div></div></div><div class="minis">'+c.certs.slice(0,8).map(function(k){return '<span class="mc" style="--c:'+esc(c.color)+'">'+(k.img?'<img src="'+esc(k.img)+'" alt="">':esc(k.name.slice(0,5)))+'</span>'}).join('')+'</div><div class="meta"><b>'+c.certs.length+' certifications</b><span>View products →</span></div></button>'});
+ h+='</div></div></header>';
+ h+='<section class="s wrap" id="certs"><div class="stitle"><h2>Certified <span>quality</span></h2><p>'+esc(names)+' each hold their own certifications. Click any seal to open its certificate.</p></div><div class="certs">';
+ s.cos.forEach(function(c,ci){
+  h+='<div class="cocol" style="--c:'+esc(c.color)+'"><div class="cohead '+(editing?'editable':'')+'" '+(editing?'data-e="co'+ci+'"':'')+'>'+(c.logo?'<img src="'+esc(c.logo)+'" alt="">':'')+'<div><h3>'+esc(c.name)+'</h3><p>'+esc(c.tag)+'</p></div><span class="count">'+nc(c.certs.length)+'</span></div><div class="logos">';
+  c.certs.forEach(function(k,ki){var p='co'+ci+'.c'+ki;
+   h+=editing?'<div class="clogo editable" data-e="'+p+'"><div class="im">'+im(k.img,k.name)+'</div><span>'+esc(k.name)+'</span>'+ctl(p)+'</div>':logoLink({cert:k,co:c})});
+  h+='</div>'+(!c.certs.length&&!editing?'<div class="empty">Certifications coming soon.</div>':'')+'<div class="addbar"><button class="add" data-a="addcert" data-p="'+ci+'">＋ Certification</button></div></div>'});
+ h+='</div></section>';
+ h+='<section class="s wrap interactive" id="catalog"><div class="stitle"><h2>Our <span>products</span></h2><p>Filter by company or product line, then open any product for details, certificates and technical sheets.</p></div><div id="tbw">'+toolbar()+'</div><div class="grid" id="grid">'+gridHTML()+'</div><div class="addbar"><button class="add" data-a="addprod">＋ Product</button><button class="add" data-a="cats">✎ Product lines</button></div></section>';
+ h+=pdfHTML();
+ var C=s.contact||{},ct='';
+ if(C.whatsapp)ct+='<a class="qb wa" target="_blank" rel="noopener" href="https://wa.me/'+C.whatsapp.replace(/\D/g,'')+'">WhatsApp</a>';
+ if(C.email)ct+='<a class="qb" href="mailto:'+esc(C.email)+'">'+esc(C.email)+'</a>';
+ if(safeUrl(C.web))ct+='<a class="qb" target="_blank" rel="noopener" href="'+esc(safeUrl(C.web))+'">'+esc(C.web)+'</a>';
+ h+='<footer class="ft '+(editing?'editable':'')+'" '+(editing?'data-e="contact"':'')+'><div class="wrap"><div class="cts">'+ct+(editing&&!ct?'<span>Click to add contact details</span>':'')+'</div><div>'+esc(C.footer)+'</div></div></footer>';
  return h}
-
+function quoteBtns(p){var C=S.contact||{},msg='Hello, I am interested in '+p.name+'. Could you please send me a quotation and more information?',o='';
+ if(C.whatsapp)o+='<a class="qb wa" target="_blank" rel="noopener" href="https://wa.me/'+C.whatsapp.replace(/\D/g,'')+'?text='+encodeURIComponent(msg)+'">WhatsApp</a>';
+ if(C.email)o+='<a class="qb mail" href="mailto:'+esc(C.email)+'?subject='+encodeURIComponent('Quotation: '+p.name)+'&body='+encodeURIComponent(msg)+'">Email</a>';
+ return o?'<div class="quote"><span>Request a quotation</span>'+o+'</div>':''}
+function openProduct(i){
+ var p=S.products[i];if(!p)return;
+ var sp=(p.specs||'').split('\n').filter(function(l){return l.trim()}).map(function(l){var k=l.indexOf(':');return k>0?'<dt>'+esc(l.slice(0,k))+'</dt><dd>'+esc(l.slice(k+1).trim())+'</dd>':'<dd class="full">'+esc(l)+'</dd>'}).join('');
+ var groups=pcos(p).map(function(c){var ks=pcerts(p).filter(function(x){return x.co===c});return ks.length?'<div class="cgrp" style="--c:'+esc(c.color)+'"><b>Certified by '+esc(c.name)+'</b><div class="logos">'+ks.map(logoLink).join('')+'</div></div>':''}).join('');
+ var links=(p.links||[]).filter(function(l){return l.text}).map(function(l){var u=safeUrl(l.url);return u?'<a class="chip" href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(l.text)+'</a>':'<span class="chip">'+esc(l.text)+'</span>'}).join('');
+ var o=document.createElement('div');o.className='pov';
+ o.innerHTML='<div class="pm"><button class="x" data-v="close" aria-label="Close">✕</button><div class="pi">'+im(p.img,p.name)+'</div><div class="pc"><div class="cobs">'+pcos(p).map(badge).join('')+'</div><div class="ccat">'+esc(p.cat)+'</div><h2>'+esc(p.name)+'</h2>'+(p.tags?'<div class="ctag">'+esc(p.tags)+'</div>':'')+(p.desc?'<div class="desc">'+esc(p.desc)+'</div>':'')+(sp?'<h4>Specifications</h4><dl class="specs">'+sp+'</dl>':'')+(groups?'<h4>Certifications</h4>'+groups:'')+(links?'<h4>Technical sheets</h4><div class="chips">'+links+'</div>':'')+quoteBtns(p)+'</div></div>';
+ o.addEventListener('mousedown',function(e){if(e.target===o)o.remove()});document.body.append(o)}
+document.addEventListener('click',function(e){
+ var b=e.target.closest('[data-v]');if(!b)return;var v=b.dataset.v;
+ if(v==='co'){F.co=b.dataset.co;refreshCat();if(b.dataset.go){var c=document.getElementById('catalog');if(c)c.scrollIntoView({behavior:'smooth'})}}
+ else if(v==='cat'){F.cat=b.dataset.cat;refreshCat()}
+ else if(v==='open')openProduct(+b.dataset.i);
+ else if(v==='close'){var o=b.closest('.pov');if(o)o.remove()}
+});
+document.addEventListener('input',function(e){if(e.target.id==='q'){F.q=e.target.value;document.getElementById('grid').innerHTML=gridHTML()}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var o=document.querySelector('.pov');if(o)o.remove()}});
 function render(){
  document.body.classList.toggle('editing',editing);
+ var bar=document.getElementById('bar');if(typeof renderBar!=='function'&&bar)bar.remove();
  document.getElementById('app').innerHTML=renderCatalog();
- if(!isViewOnly)renderBar();
-}
+ if(typeof renderBar==='function')renderBar()}
+</script>
+<script src="qrcode.js"></script>
+<script id="editjs">
+/* ===== EDITOR (no se incluye en la web exportada) ===== */
+var KEY='frutosa-pulpagro-catalog-v2';
+function uid(){return 'x'+Math.random().toString(36).slice(2,9)}
+var C=function(n,u){return{id:uid(),name:n,img:'',url:u||''}};
+var PR=function(name,cat,tags,links){return{id:uid(),name:name,cat:cat,co:'frutosa',img:'',tags:tags||'',desc:'',specs:'',certs:[],links:(links||[]).map(function(t){return{text:t,url:''}})}};
+var DEFAULT={
+ eyebrow:'Premium fruit from Peru',title:'Fruits & Pulps for the World',subtitle:'Frutosa and Pulpagro — two companies, each with its own certified quality, bringing Peruvian fruit to international markets.',bg:'',
+ cos:[
+  {id:'frutosa',name:'Frutosa',tag:'Frutos Tongorrape S.A.',logo:'',color:'#1f6f2e',certs:['BRCGS','IFS','FDA','SGF','SENASA','Control Union','Agrana','Naturland','Sedex','SMETA','Intl. Certification','USDA Organic','EU Organic','Demeter','EcoVadis'].map(function(n){return C(n)})},
+  {id:'pulpagro',name:'Pulpagro',tag:'Add your company description',logo:'',color:'#ea580c',certs:[]}
+ ],
+ cats:['Frozen PFJ','Frozen Pulps','IQF'],
+ products:[
+  PR('Passion Fruit Juice (PFJ)','Frozen PFJ','Conventional / Organic',['Non from concentrate (NFC)','Concentrate','Waterphase','Unpasteurized','Unpasteurized with seed']),
+  PR('Mango Chato de Ica','Frozen Pulps','Conventional / Organic',['Unpasteurized','Pasteurized NFC','Concentrate']),
+  PR('Mango Criollo','Frozen Pulps','Conventional / Organic',['Unpasteurized','Pasteurized NFC','Concentrate']),
+  PR('Mango Kent','Frozen Pulps','Conventional / Organic',['Unpasteurized','Pasteurized NFC','Concentrate']),
+  PR('Mango Edward','Frozen Pulps','Conventional / Organic',['Pasteurized NFC']),
+  PR('Mango Haden','Frozen Pulps','Conventional / Organic',['Pasteurized NFC']),
+  PR('Physalis Goldenberry','Frozen Pulps','Conventional / Organic',['Pasteurized NFC']),
+  PR('Mango Edward — Chunks','IQF','Conventional / Organic',['Chunks | Edward']),
+  PR('Mango Kent — Chunks & Halves','IQF','Conventional / Organic',['Chunks | Kent','Halves | Kent']),
+  PR('Avocado','IQF','Conventional / Organic',['Chunks | Avocado','Halves | Avocado','Puree | Avocado']),
+  PR('Organic Banana — Slices','IQF','Organic',['Slices | Organic Banana']),
+  PR('Ginger','IQF','Conventional / Organic',['Ginger | IQF']),
+  PR('Physalis / Goldenberry','IQF','Conventional / Organic',['Physalis / Goldenberry IQF']),
+  PR('Pomegranate','IQF','Conventional / Organic',['Pomegranate | IQF']),
+  PR('Blueberry','IQF','Conventional / Organic',['Blueberry | IQF'])
+ ],
+ contact:{email:'',whatsapp:'',web:'',footer:'Fundo Alexander Nro. Sn Cpm Tongorrape - Motupe - Lambayeque - Perú'},
+ url:''
+};
+var S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+if(!S)S=JSON.parse(JSON.stringify(DEFAULT));
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('⚠ Memoria llena: usa imágenes más pequeñas o enlaces de imagen')}}
+function toast(m){var t=document.createElement('div');t.className='toast';t.textContent=m;document.body.append(t);setTimeout(function(){t.remove()},2800)}
+function commit(){save();render()}
+function mv(a,i,d){var j=i+d;if(j<0||j>=a.length)return;var t=a[i];a[i]=a[j];a[j]=t;commit()}
 function renderBar(){
- document.getElementById('bar').innerHTML=`<b>🍍 Editor de catálogo</b>
- <button class="btn ${editing?'on':'pri'}" data-a="toggle">${editing?'👁 Ver como cliente':'✏️ Editar'}</button>
- <button class="btn org" data-a="pdf">📄 PDF</button>
- <button class="btn org" data-a="qr">▦ QR / Enlace</button>
- <button class="btn" data-a="html">⬇ Web (HTML)</button>
- <button class="btn" data-a="backup">💾 Guardar copia</button>
- <button class="btn" data-a="restore">📂 Abrir copia</button>
- <button class="btn dan" data-a="reset">↺</button>`}
-
-/* ---------- rutas de datos ---------- */
+ document.getElementById('bar').innerHTML='<b>🍍 Editor de catálogo</b><button class="btn '+(editing?'on':'pri')+'" data-a="toggle">'+(editing?'👁 Ver como cliente':'✏️ Editar')+'</button><button class="btn org" data-a="pdf">📄 PDF</button><button class="btn org" data-a="qr">▦ QR / Enlace</button><button class="btn" data-a="html">⬇ Web (HTML)</button><button class="btn" data-a="backup">💾 Guardar copia</button><button class="btn" data-a="restore">📂 Abrir copia</button><button class="btn dan" data-a="reset">↺</button>'}
+/* rutas de datos */
 function getObj(p){
- let m;
- if(p==='hero')return{o:S,fields:[['logo','Logo de la empresa','image'],['title','Título','text'],['subtitle','Subtítulo','text']],t:'Cabecera'};
- if(p==='footer')return{o:S,fields:[['footer','Texto de pie de página','text']],t:'Pie de página'};
- if(m=p.match(/^c(\d+)$/)){return{o:S.certs[m[1]],fields:[['name','Nombre de la empresa','text'],['logo','Logo de la empresa','image']],t:'Columna'}}
- if(m=p.match(/^c(\d+)\.(\d+)$/)){const a=S.certs[m[1]].items;return{o:a[m[2]],arr:a,i:+m[2],fields:[['img','Logo de la certificación','image'],['name','Nombre','text'],['url','Enlace al certificado (Drive, etc.)','url']],t:'Certificación'}}
- if(m=p.match(/^s(\d+)\.b(\d+)$/)){const a=S.sections[m[1]].bullets;return{o:a[m[2]],arr:a,i:+m[2],fields:[['text','Texto','text'],['url','Enlace (ficha técnica)','url']],t:'Texto con enlace'}}
- if(m=p.match(/^s(\d+)\.i(\d+)\.l(\d+)$/)){const a=S.sections[m[1]].items[m[2]].links;return{o:a[m[3]],arr:a,i:+m[3],fields:[['text','Texto','text'],['url','Enlace (ficha técnica)','url']],t:'Enlace de ficha técnica'}}
- if(m=p.match(/^s(\d+)\.i(\d+)$/)){const a=S.sections[m[1]].items;return{o:a[m[2]],arr:a,i:+m[2],fields:[['img','Imagen','image'],['name','Nombre del producto','text'],['url','Enlace al hacer clic en la imagen (opcional)','url'],['links','Textos con enlace (fichas técnicas)','links']],t:'Producto'}}
+ var m,coOpts=function(){return S.cos.map(function(c){return[c.id,c.name]}).concat([['both','Ambas empresas']])};
+ if(p==='hero')return{o:S,t:'Portada',fields:[['eyebrow','Etiqueta superior','text'],['title','Título','text'],['subtitle','Subtítulo','textarea'],['bg','Imagen de fondo de la portada (opcional)','image']]};
+ if(p==='contact')return{o:S.contact,t:'Contacto y pie de página',fields:[['whatsapp','WhatsApp (con código de país, ej. 51999888777)','text'],['email','Correo','text'],['web','Sitio web','text'],['footer','Dirección / pie de página','text']]};
+ if(p==='cats')return{o:S,t:'Líneas de producto',fields:[['cats','Líneas separadas por coma','csv']]};
+ if(m=p.match(/^co(\d+)$/))return{o:S.cos[m[1]],t:'Empresa',fields:[['name','Nombre','text'],['tag','Descripción corta','text'],['logo','Logo de la empresa','image'],['color','Color de la empresa','color']]};
+ if(m=p.match(/^co(\d+)\.c(\d+)$/)){var a=S.cos[m[1]].certs;return{o:a[m[2]],arr:a,i:+m[2],t:'Certificación de '+S.cos[m[1]].name,fields:[['img','Logo de la certificación','image'],['name','Nombre','text'],['url','Enlace al certificado (Drive, etc.)','url']]}}
+ if(m=p.match(/^p(\d+)\.l(\d+)$/)){var b=S.products[m[1]].links;return{o:b[m[2]],arr:b,i:+m[2]}}
+ if(m=p.match(/^p(\d+)$/))return{o:S.products[m[1]],arr:S.products,i:+m[1],t:'Producto',fields:[['img','Foto del producto','image'],['name','Nombre','text'],['cat','Línea de producto','select',function(){return S.cats.map(function(c){return[c,c]})}],['co','Empresa que lo ofrece','select',coOpts],['tags','Etiquetas (ej. Conventional / Organic)','text'],['desc','Descripción','textarea'],['specs','Especificaciones (una por línea, formato  Título: valor)','textarea'],['certs','Certificaciones de este producto','checks'],['links','Fichas técnicas (texto + enlace)','links']]}
 }
-function parentArr(p){const g=getObj(p);return g&&g.arr}
-
-/* ---------- modal editor ---------- */
-function modal(html){const o=document.createElement('div');o.className='ov';o.innerHTML=`<div class="modal">${html}</div>`;
- o.addEventListener('mousedown',e=>{if(e.target===o)o.remove()});document.body.append(o);return o}
-function shrink(file,max=700){return new Promise((res,rej)=>{
- const r=new FileReader();r.onerror=rej;r.onload=()=>{const i=new Image();i.onerror=rej;i.onload=()=>{
-  const k=Math.min(1,max/Math.max(i.width,i.height));const c=document.createElement('canvas');c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);
-  c.getContext('2d').drawImage(i,0,0,c.width,c.height);
-  const png=/png|svg|gif/.test(file.type);res(png?c.toDataURL('image/png'):c.toDataURL('image/jpeg',.82))};i.src=r.result};r.readAsDataURL(file)})}
+/* modal de edición */
+function modal(html){var o=document.createElement('div');o.className='ov';o.innerHTML='<div class="modal">'+html+'</div>';o.addEventListener('mousedown',function(e){if(e.target===o)o.remove()});document.body.append(o);return o}
+function shrink(file,max){max=max||900;return new Promise(function(res,rej){var r=new FileReader();r.onerror=rej;r.onload=function(){var i=new Image();i.onerror=rej;i.onload=function(){var k=Math.min(1,max/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);c.getContext('2d').drawImage(i,0,0,c.width,c.height);res(/png|svg|gif/.test(file.type)?c.toDataURL('image/png'):c.toDataURL('image/jpeg',.85))};i.src=r.result};r.readAsDataURL(file)})}
 function openEditor(p){
- const g=getObj(p);if(!g)return;const o=g.o;
- const m=modal(`<h3>✏️ ${g.t}</h3><div id="f"></div><div class="acts"><button class="btn pri" id="ok">Listo</button></div>`);
- const f=m.querySelector('#f');
- g.fields.forEach(([k,label,type])=>{
-  const w=document.createElement('div');w.innerHTML=`<label>${label}</label>`;
+ var g=getObj(p);if(!g||!g.fields)return;var o=g.o,redraw=[];
+ var m=modal('<h3>✏️ '+g.t+'</h3><div id="f"></div><div class="acts"><button class="btn pri" id="ok">Listo</button></div>');
+ var f=m.querySelector('#f');
+ g.fields.forEach(function(fd){
+  var k=fd[0],label=fd[1],type=fd[2],w=document.createElement('div');w.innerHTML='<label>'+label+'</label>';
   if(type==='image'){
-   w.insertAdjacentHTML('beforeend',`<div class="imgp"></div><div class="row" style="margin-top:6px"><input type="file" accept="image/*"><button class="btn dan" type="button">Quitar</button></div><input type="url" placeholder="…o pega un enlace de imagen https://" value="${esc(String(o[k]||'').startsWith('data:')?'':o[k]||'')}">`);
-   const pv=w.querySelector('.imgp'),file=w.querySelector('input[type=file]'),url=w.querySelector('input[type=url]');
-   const show=()=>pv.innerHTML=o[k]?`<img src="${esc(o[k])}">`:'<span style="color:#9ca3af">Sin imagen</span>';show();
-   file.onchange=async()=>{if(file.files[0]){o[k]=await shrink(file.files[0]);url.value='';show()}};
-   url.oninput=()=>{o[k]=url.value.trim();show()};
-   w.querySelector('.btn.dan').onclick=()=>{o[k]='';url.value='';show()};
-   w.insertAdjacentHTML('beforeend','<div class="hint">Sube el archivo (se reduce automáticamente) o usa un enlace público.</div>');
+   w.insertAdjacentHTML('beforeend','<div class="imgp"></div><div class="row" style="margin-top:6px"><input type="file" accept="image/*"><button class="btn dan" type="button">Quitar</button></div><input type="url" placeholder="…o pega un enlace de imagen https://" value="'+esc(String(o[k]||'').indexOf('data:')===0?'':o[k]||'')+'" style="width:100%;padding:9px 11px;border:1px solid #d1d5db;border-radius:10px">');
+   var pv=w.querySelector('.imgp'),file=w.querySelector('input[type=file]'),url=w.querySelector('input[type=url]');
+   var show=function(){pv.innerHTML=o[k]?'<img src="'+esc(o[k])+'">':'<span style="color:#9ca3af">Sin imagen</span>'};show();
+   file.onchange=async function(){if(file.files[0]){o[k]=await shrink(file.files[0],k==='bg'?1600:900);url.value='';show()}};
+   url.oninput=function(){o[k]=url.value.trim();show()};
+   w.querySelector('.btn.dan').onclick=function(){o[k]='';url.value='';show()};
   }else if(type==='links'){
-   const box=document.createElement('div');w.append(box);
-   const draw=()=>{box.innerHTML='';o.links.forEach((l,i)=>{const r=document.createElement('div');r.className='row';
-    r.innerHTML=`<input type="text" placeholder="Texto" value="${esc(l.text)}"><input type="url" placeholder="Enlace ficha técnica" value="${esc(l.url)}"><button class="btn dan" type="button">✕</button>`;
-    const[a,b,d]=r.children;a.oninput=()=>l.text=a.value;b.oninput=()=>l.url=b.value.trim();d.onclick=()=>{o.links.splice(i,1);draw()};box.append(r)});
-    const add=document.createElement('button');add.className='btn';add.type='button';add.textContent='＋ Añadir texto con enlace';add.onclick=()=>{o.links.push({text:'Nuevo',url:''});draw()};box.append(add)};draw();
+   var box=document.createElement('div');w.append(box);
+   var draw=function(){box.innerHTML='';o.links.forEach(function(l,i){var r=document.createElement('div');r.className='row';
+    r.innerHTML='<input type="text" placeholder="Texto" value="'+esc(l.text)+'"><input type="url" placeholder="Enlace ficha técnica" value="'+esc(l.url)+'"><button class="btn dan" type="button">✕</button>';
+    var a=r.children[0],b=r.children[1],d=r.children[2];a.oninput=function(){l.text=a.value};b.oninput=function(){l.url=b.value.trim()};d.onclick=function(){o.links.splice(i,1);draw()};box.append(r)});
+    var add=document.createElement('button');add.className='btn';add.type='button';add.textContent='＋ Añadir ficha / enlace';add.onclick=function(){o.links.push({text:'Nuevo',url:''});draw()};box.append(add)};draw();
+  }else if(type==='checks'){
+   var cb=document.createElement('div');w.append(cb);
+   var dr=function(){var cos=o.co==='both'?S.cos:S.cos.filter(function(c){return c.id===o.co}),h='';
+    cos.forEach(function(c){h+='<div style="margin-top:8px"><b class="chk" style="color:'+esc(c.color)+'">'+esc(c.name)+'</b>';
+     if(!c.certs.length)h+='<div class="hint">Esta empresa aún no tiene certificaciones. Agrégalas en la sección Certificaciones.</div>';
+     c.certs.forEach(function(k){h+='<label class="chk" style="text-transform:none;font-size:14px;color:inherit;margin:0"><input type="checkbox" data-id="'+k.id+'" '+(o.certs.indexOf(k.id)>-1?'checked':'')+'> '+esc(k.name)+'</label>'});h+='</div>'});
+    cb.innerHTML=h;cb.querySelectorAll('input').forEach(function(i){i.onchange=function(){var id=i.dataset.id,x=o.certs.indexOf(id);if(i.checked&&x<0)o.certs.push(id);if(!i.checked&&x>-1)o.certs.splice(x,1)}})};
+   dr();redraw.push(dr);
+  }else if(type==='select'){
+   var sel=document.createElement('select');fd[3]().forEach(function(op){sel.insertAdjacentHTML('beforeend','<option value="'+esc(op[0])+'" '+(o[k]===op[0]?'selected':'')+'>'+esc(op[1])+'</option>')});
+   sel.onchange=function(){o[k]=sel.value;redraw.forEach(function(r){r()})};w.append(sel);
+  }else if(type==='csv'){
+   var ci=document.createElement('input');ci.type='text';ci.value=o[k].join(', ');ci.oninput=function(){o[k]=ci.value.split(',').map(function(x){return x.trim()}).filter(Boolean)};w.append(ci);
+  }else if(type==='textarea'){
+   var ta=document.createElement('textarea');ta.value=o[k]||'';ta.oninput=function(){o[k]=ta.value};w.append(ta);
+  }else if(type==='color'){
+   var co=document.createElement('input');co.type='color';co.value=o[k]||'#1f6f2e';co.oninput=function(){o[k]=co.value};w.append(co);
   }else{
-   const i=document.createElement('input');i.type=type==='url'?'url':'text';i.value=o[k]||'';i.placeholder=type==='url'?'https://drive.google.com/…':'';i.oninput=()=>o[k]=type==='url'?i.value.trim():i.value;w.append(i);
-   if(type==='url')w.insertAdjacentHTML('beforeend','<div class="hint">En Drive: Compartir → "Cualquier persona con el enlace" → Copiar enlace.</div>')}
+   var i=document.createElement('input');i.type=type==='url'?'url':'text';i.value=o[k]||'';i.placeholder=type==='url'?'https://drive.google.com/…':'';i.oninput=function(){o[k]=type==='url'?i.value.trim():i.value};w.append(i);
+   if(type==='url')w.insertAdjacentHTML('beforeend','<div class="hint">En Drive: Compartir → "Cualquier persona con el enlace" → Copiar enlace.</div>');
+  }
   f.append(w)});
- m.querySelector('#ok').onclick=()=>{m.remove();commit()};
- m.addEventListener('mousedown',e=>{if(e.target===m)commit()});
+ m.querySelector('#ok').onclick=function(){m.remove();commit()};
+ m.addEventListener('mousedown',function(e){if(e.target===m)commit()});
 }
-
-/* ---------- exportar ---------- */
-function download(name,text,type='text/html'){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+/* exportar */
+function download(name,text,type){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:type||'text/html'}));a.download=name;a.click();setTimeout(function(){URL.revokeObjectURL(a.href)},2000)}
 function standaloneHTML(){
- const was=editing;editing=false;const body=renderCatalog();editing=was;
- return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(S.title)}</title><style>${document.getElementById('css').textContent}</style></head><body>${body}</body></html>`}
+ var data=JSON.stringify(S).replace(/</g,'\\u003c'),view=document.getElementById('viewjs').textContent,css=document.getElementById('css').textContent,head=document.head.querySelector('link[rel=stylesheet]').outerHTML;
+ return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(S.cos.map(function(c){return c.name}).join(' · '))+' — Product Catalog</title>'+head+'<style>'+css+'</style></head><body><div id="app"></div><script>var S='+data+';<\/script><script>'+view+'<\/script><script>render()<\/script></body></html>'}
 function showQR(){
- const m=modal(`<h3>▦ QR y enlace</h3><label>Dirección pública de tu catálogo</label><input type="url" id="u" placeholder="https://tu-catalogo.netlify.app" value="${esc(S.pdfUrl)}"><div class="hint">Publica el archivo "Web (HTML)" (Netlify Drop, GitHub Pages, tu hosting…) y pega aquí su dirección. También puedes usar el enlace de un PDF subido a Drive.</div><div class="qrbox" id="q" style="margin-top:14px"></div><div class="acts"><button class="btn" id="cp">Copiar enlace</button><button class="btn org" id="dl">Descargar QR</button><button class="btn pri" id="cl">Cerrar</button></div>`);
- const u=m.querySelector('#u'),q=m.querySelector('#q');let data='';
- const draw=()=>{S.pdfUrl=u.value.trim();save();const url=safeUrl(S.pdfUrl);q.innerHTML='';data='';if(!url)return;
+ var m=modal('<h3>▦ QR y enlace</h3><label>Dirección pública de tu catálogo</label><input type="url" id="u" placeholder="https://tu-catalogo.netlify.app" value="'+esc(S.url)+'"><div class="hint">Publica el archivo "Web (HTML)" (Netlify Drop, GitHub Pages…) y pega aquí su dirección.</div><div class="qrbox" id="q" style="margin-top:14px"></div><div class="acts"><button class="btn" id="cp">Copiar enlace</button><button class="btn org" id="dl">Descargar QR</button><button class="btn pri" id="cl">Cerrar</button></div>');
+ var u=m.querySelector('#u'),q=m.querySelector('#q'),data='';
+ var draw=function(){S.url=u.value.trim();save();var url=safeUrl(S.url);q.innerHTML='';data='';if(!url)return;
   if(typeof qrcode==='undefined'){q.textContent='No se pudo cargar la librería QR (¿sin internet?)';return}
-  const c=qrcode(0,'M');c.addData(url);c.make();data=c.createDataURL(8,3);q.innerHTML=`<img src="${data}">`};
- u.oninput=draw;draw();
- m.querySelector('#cp').onclick=()=>{navigator.clipboard?.writeText(S.pdfUrl);toast('Enlace copiado')};
- m.querySelector('#dl').onclick=()=>{if(!data)return toast('Escribe primero la dirección');const a=document.createElement('a');a.href=data;a.download='qr-catalogo.png';a.click()};
- m.querySelector('#cl').onclick=()=>m.remove()}
-
-/* ---------- eventos ---------- */
-document.addEventListener('click',async e=>{
- const b=e.target.closest('[data-a]');
- if(b){e.preventDefault();e.stopPropagation();const a=b.dataset.a,p=b.dataset.p;
+  var c=qrcode(0,'M');c.addData(url);c.make();data=c.createDataURL(8,3);q.innerHTML='<img src="'+data+'">'};
+ u.oninput=draw;
+ if(typeof qrcode==='undefined'){var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js';s.onload=draw;document.head.append(s)}
+ draw();
+ m.querySelector('#cp').onclick=function(){if(navigator.clipboard)navigator.clipboard.writeText(S.url);toast('Enlace copiado')};
+ m.querySelector('#dl').onclick=function(){if(!data)return toast('Escribe primero la dirección');var a=document.createElement('a');a.href=data;a.download='qr-catalogo.png';a.click()};
+ m.querySelector('#cl').onclick=function(){m.remove()}}
+/* eventos de administración (fase de captura: tienen prioridad sobre la vista) */
+document.addEventListener('click',async function(e){
+ var b=e.target.closest('[data-a]');
+ if(b){e.preventDefault();e.stopImmediatePropagation();var a=b.dataset.a,p=b.dataset.p;
   switch(a){
    case'toggle':editing=!editing;render();break;
-   case'pdf':{const was=editing;editing=false;render();toast('En el cuadro de impresión elige "Guardar como PDF". Los enlaces seguirán activos.');setTimeout(()=>{print();editing=was;render()},700);break}
+   case'pdf':{var was=editing;editing=false;render();toast('En el cuadro de impresión elige "Guardar como PDF". Los enlaces seguirán activos.');setTimeout(function(){print();editing=was;render()},700);break}
    case'qr':showQR();break;
    case'html':download('catalogo.html',standaloneHTML());break;
    case'backup':download('catalogo-copia.json',JSON.stringify(S),'application/json');break;
-   case'restore':{const i=document.createElement('input');i.type='file';i.accept='.json';i.onchange=async()=>{try{S=JSON.parse(await i.files[0].text());commit();toast('Copia cargada')}catch(x){toast('Archivo no válido')}};i.click();break}
+   case'restore':{var inp=document.createElement('input');inp.type='file';inp.accept='.json';inp.onchange=async function(){try{S=JSON.parse(await inp.files[0].text());commit();toast('Copia cargada')}catch(x){toast('Archivo no válido')}};inp.click();break}
    case'reset':if(confirm('¿Borrar todo y volver al catálogo inicial?')){S=JSON.parse(JSON.stringify(DEFAULT));commit()}break;
-   case'l':case'r':{const arr=parentArr(p);const g=getObj(p);if(arr)mv(arr,g.i,a==='l'?-1:1);break}
-   case'd':{const arr=parentArr(p);const g=getObj(p);if(arr&&confirm('¿Eliminar?')){arr.splice(g.i,1);commit()}break}
-   case'addcert':S.certs[p].items.push(L('Nueva'));commit();openEditor(`c${p}.${S.certs[p].items.length-1}`);break;
-   case'addprod':S.sections[p].items.push(P('Nuevo producto'));commit();openEditor(`s${p}.i${S.sections[p].items.length-1}`);break;
-   case'addbul':S.sections[p].bullets.push({text:'Nuevo texto',url:''});commit();openEditor(`s${p}.b${S.sections[p].bullets.length-1}`);break;
-   case'addsec':S.sections.push({title:'Nueva sección',sub:'',bullets:[],items:[]});commit();sedit(S.sections.length-1);break;
-   case'sup':mv(S.sections,+p,-1);break;
-   case'sdn':mv(S.sections,+p,1);break;
-   case'sdel':if(confirm('¿Eliminar la sección completa?')){S.sections.splice(p,1);commit()}break;
-   case'sed':sedit(+p);break;
+   case'l':case'r':{var g=getObj(p);if(g&&g.arr)mv(g.arr,g.i,a==='l'?-1:1);break}
+   case'd':{var g2=getObj(p);if(g2&&g2.arr&&confirm('¿Eliminar?')){g2.arr.splice(g2.i,1);commit()}break}
+   case'addcert':S.cos[p].certs.push(C('Nueva certificación'));commit();openEditor('co'+p+'.c'+(S.cos[p].certs.length-1));break;
+   case'addprod':{var np=PR('Nuevo producto',S.cats[0]||'','',[]);S.products.push(np);commit();openEditor('p'+(S.products.length-1));break}
+   case'cats':openEditor('cats');break;
   }return}
- const ed=editing&&e.target.closest('[data-e]');
- if(ed){e.preventDefault();openEditor(ed.dataset.e)}
-});
-function sedit(i){const s=S.sections[i];const m=modal(`<h3>Título de la sección</h3><label>Título</label><input type="text" id="t" value="${esc(s.title)}"><label>Subtítulo</label><input type="text" id="s" value="${esc(s.sub)}"><div class="acts"><button class="btn pri">Listo</button></div>`);
- m.querySelector('.btn').onclick=()=>{s.title=m.querySelector('#t').value;s.sub=m.querySelector('#s').value;m.remove();commit()}}
-document.addEventListener('click',e=>{if(editing&&e.target.closest('a'))e.preventDefault()},true);
+ if(editing){
+  if(e.target.closest('a'))e.preventDefault();
+  var ed=e.target.closest('[data-e]');
+  if(ed){e.preventDefault();e.stopImmediatePropagation();openEditor(ed.dataset.e)}}
+},true);
 render();
 </script>
 </body>
