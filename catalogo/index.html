@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo Frutosa · Pulpagro</title>
+<style id="css">
+:root{--g:#2f7d32;--g2:#6aa84f;--o:#f59e0b;--o2:#ea580c;--ink:#1f2937;--mut:#6b7280;--bg:#f6f8f3;--card:#fff;--line:#e5e9df}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;color:var(--ink);background:var(--bg);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+a{color:inherit}
+.page{max-width:1100px;margin:0 auto;padding:0 18px 40px}
+header.hero{background:linear-gradient(135deg,#1e5e24,#4c9a2a 55%,#f59e0b);color:#fff;border-radius:0 0 28px 28px;padding:28px 24px 34px;text-align:center;position:relative;overflow:hidden}
+header.hero:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.12)}
+.hero .logo{max-height:110px;max-width:320px;background:#fff;border-radius:18px;padding:10px 18px;margin-bottom:12px}
+.hero h1{margin:6px 0 2px;font-size:clamp(24px,4vw,38px);letter-spacing:.5px}
+.hero p{margin:0;opacity:.92}
+h2.sec{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;color:var(--g)}
+h2.sec small{font-weight:500;text-transform:none;letter-spacing:0;color:var(--mut);font-size:13px}
+h2.sec:before{content:"";width:6px;height:22px;border-radius:3px;background:linear-gradient(var(--o),var(--o2))}
+section.blk{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:22px;box-shadow:0 4px 18px rgba(30,60,20,.06);position:relative;break-inside:avoid}
+.certs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.col{border:1px solid var(--line);border-radius:16px;padding:14px;background:linear-gradient(#fff,#f9fbf6);position:relative}
+.col h3{margin:0 0 10px;display:flex;align-items:center;gap:10px;font-size:17px;color:var(--g)}
+.col h3 img{height:38px;max-width:140px;object-fit:contain}
+.logos{display:flex;flex-wrap:wrap;gap:10px}
+.logo-item{width:92px;text-align:center;position:relative;text-decoration:none;border-radius:12px;padding:6px;transition:.15s}
+a.logo-item:hover,.logo-item.edit:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.12);background:#fff}
+.logo-item .im{height:56px;display:flex;align-items:center;justify-content:center}
+.logo-item img{max-width:100%;max-height:56px;object-fit:contain}
+.logo-item span{display:block;font-size:11px;color:var(--mut);margin-top:3px;line-height:1.15}
+.ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-height:54px;border-radius:10px;background:repeating-linear-gradient(45deg,#f1f5ec,#f1f5ec 8px,#e7eedf 8px,#e7eedf 16px);color:#8a9a7b;font-size:11px;font-weight:600;text-align:center;padding:4px}
+.empty{color:var(--mut);font-size:13px;font-style:italic;padding:14px 4px}
+.bul{margin:0 0 14px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:999px;background:#eef6e8;border:1px solid #d5e7c8;font-size:13px;text-decoration:none;position:relative}
+a.chip{color:var(--g);font-weight:600}
+a.chip:hover{background:var(--g);color:#fff}
+a.chip:after{content:"↗";font-size:11px;opacity:.7}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+.prod{position:relative;text-align:center;border-radius:16px;padding:8px;transition:.15s}
+.prod:hover{background:#fafcf7}
+.prod .pim{aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#f3f6ee;border:1px solid var(--line)}
+.prod .pim img{width:100%;height:100%;object-fit:cover;display:block;transition:.3s}
+.prod:hover .pim img{transform:scale(1.06)}
+.prod .nm{font-weight:700;font-size:13px;margin:8px 0 4px}
+.links{display:flex;flex-direction:column;gap:4px;align-items:center}
+.links .chip{font-size:11px;padding:3px 10px;background:#fff7e6;border-color:#fde2a7}
+.links a.chip{color:#b45309}
+.links a.chip:hover{background:var(--o);color:#fff}
+footer.foot{text-align:center;color:#7a8b68;font-weight:600;font-size:13px;margin-top:28px}
+/* barra */
+.bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:8px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.bar b{color:var(--g);margin-right:auto}
+.btn{border:0;border-radius:10px;padding:8px 14px;font:600 13px inherit;font-family:inherit;cursor:pointer;background:#eef2ea;color:var(--ink)}
+.btn:hover{filter:brightness(.95)}
+.btn.pri{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff}
+.btn.org{background:linear-gradient(135deg,var(--o),var(--o2));color:#fff}
+.btn.dan{background:#fee2e2;color:#b91c1c}
+.btn.on{background:#111827;color:#fff}
+/* controles de edición */
+.editing .editable{outline:2px dashed transparent;cursor:pointer}
+.editing .editable:hover{outline-color:var(--o)}
+.ctl{display:none;position:absolute;top:-10px;right:-6px;z-index:5;gap:2px;background:#111827;border-radius:8px;padding:2px}
+.editing .editable:hover>.ctl,.editing .sctl{display:flex}
+.ctl button{border:0;background:none;color:#fff;cursor:pointer;padding:2px 6px;font-size:13px}
+.ctl button:hover{color:var(--o)}
+.sctl{display:none;position:absolute;top:-12px;right:14px;z-index:5;gap:2px;background:#111827;border-radius:10px;padding:3px}
+.sctl button{border:0;background:none;color:#fff;cursor:pointer;padding:3px 8px;font-size:13px}
+.addbar{display:none;gap:8px;margin-top:14px;flex-wrap:wrap}
+.editing .addbar{display:flex}
+.add{border:2px dashed #b9cfa6;background:#fbfdf8;color:var(--g);border-radius:12px;padding:8px 14px;font-weight:600;cursor:pointer;font-family:inherit}
+.add:hover{background:#eef6e8}
+/* modal */
+.ov{position:fixed;inset:0;background:rgba(17,24,39,.55);z-index:100;display:flex;align-items:center;justify-content:center;padding:14px}
+.modal{background:#fff;border-radius:18px;max-width:480px;width:100%;max-height:92vh;overflow:auto;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.modal h3{margin:0 0 12px}
+.modal label{display:block;font-size:12px;font-weight:700;color:var(--mut);margin:12px 0 4px;text-transform:uppercase;letter-spacing:.5px}
+.modal input[type=text],.modal input[type=url]{width:100%;padding:9px 11px;border:1px solid #d1d5db;border-radius:10px;font:inherit}
+.modal .row{display:flex;gap:6px;margin-bottom:6px}
+.modal .row input{flex:1}
+.modal .imgp{height:110px;border:1px dashed #c7d2bf;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#fafcf7;overflow:hidden}
+.modal .imgp img{max-width:100%;max-height:100%}
+.modal .acts{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}
+.qrbox{text-align:center}.qrbox img{width:240px;height:240px;image-rendering:pixelated}
+.hint{font-size:12px;color:var(--mut);margin-top:6px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 18px;border-radius:12px;z-index:200;font-size:14px}
+@media(max-width:700px){.certs{grid-template-columns:1fr}}
+@media print{
+ @page{size:A4;margin:10mm}
+ body{background:#fff}.no-print,.bar,.ctl,.sctl,.addbar{display:none!important}
+ header.hero{border-radius:14px}section.blk{box-shadow:none;break-inside:avoid}
+ .page{max-width:none;padding:0}
+}
+</style>
+</head>
+<body>
+<div id="bar" class="bar no-print"></div>
+<div id="app"></div>
+<script src="qrcode.js"></script>
+<script id="appjs">
+const KEY='frutosa-catalog-v1';
+const L=(name,url)=>({name,url:url||'',img:''});
+const P=(name,links)=>({name,img:'',links:(links||[]).map(t=>({text:t,url:''}))});
+const DEFAULT={
+ title:'Frutosa · Pulpagro',subtitle:'Frutas de exportación del Perú · Premium Peruvian fruit',logo:'',
+ footer:'Fundo Alexander Nro. Sn Cpm Tongorrape - Motupe - Lambayeque - Perú',pdfUrl:'',
+ certs:[
+  {name:'Frutosa',logo:'',items:['BRCGS','IFS','FDA','SGF','SENASA','Control Union','Agrana','Naturland','Sedex','SMETA','Sludge Cert.','USDA Organic','EU Organic','Demeter','EcoVadis'].map(n=>L(n))},
+  {name:'Pulpagro',logo:'',items:[]}
+ ],
+ sections:[
+  {title:'Frozen PFJ',sub:'(Conventional/Organic)',
+   bullets:['Non from concentrate (NFC)','Concentrate','Waterphase','Unpasteurized','Unpasteurized with seed'].map(t=>({text:t,url:''})),
+   items:[P('Passion fruit flower'),P('Passion fruit'),P('Passion fruit juice'),P('Drum')]},
+  {title:'Frozen Pulps',sub:'(Conventional/Organic)',bullets:[],
+   items:[P('Chato de Ica',['Unpasteurized','Pasteurized NFC','Concentrate']),P('Criollo',['Unpasteurized','Pasteurized NFC','Concentrate']),P('Kent',['Unpasteurized','Pasteurized NFC','Concentrate']),P('Edward',['Pasteurized NFC']),P('Haden',['Pasteurized NFC']),P('Physalis Goldenberry',['Pasteurized NFC'])]},
+  {title:'IQF',sub:'(Conventional/Organic)',bullets:[],
+   items:[P('Mango Edward',['Chunks | Edward']),P('Mango Kent',['Chunks | Kent','Halves | Kent']),P('Avocado',['Chunks | Avocado','Halves | Avocado','Puree | Avocado']),P('Organic Banana',['Slices | Organic Banana']),P('Ginger',['Ginger | IQF']),P('Physalis / Goldenberry',['Physalis / Goldenberry IQF']),P('Pomegranate',['Pomegranate | IQF']),P('Blueberry',['Blueberry | IQF'])]}
+ ]
+};
+let S,editing=false;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+if(!S)S=JSON.parse(JSON.stringify(DEFAULT));
+const isViewOnly=new URLSearchParams(location.search).has('view');
+
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('⚠ Memoria llena: usa imágenes más pequeñas o enlaces de imagen')}}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function safeUrl(u){u=(u||'').trim();if(!u)return'';return /^(https?:|mailto:)/i.test(u)?u:(/^[\w.-]+\.[a-z]{2,}/i.test(u)?'https://'+u:'')}
+function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),2600)}
+function mv(a,i,d){const j=i+d;if(j<0||j>=a.length)return;[a[i],a[j]]=[a[j],a[i]];commit()}
+function commit(){save();render()}
+
+/* ---------- render (devuelve HTML string; editing añade marcas data-*) ---------- */
+function ph(t){return `<div class="ph">${esc(t)}</div>`}
+function im(src,t){return src?`<img src="${esc(src)}" alt="${esc(t)}" loading="lazy">`:ph(t)}
+function ctl(path,arr){return editing?`<div class="ctl"><button data-a="l" data-p="${path}" title="Mover atrás">◀</button><button data-a="r" data-p="${path}" title="Mover adelante">▶</button><button data-a="d" data-p="${path}" title="Eliminar">✕</button></div>`:''}
+function chip(text,url,path){
+ const u=safeUrl(url);const inner=esc(text);
+ const c=editing?`<span class="chip editable" data-e="${path}">${inner}${u?' 🔗':' ➕'}${ctl(path)}</span>`
+  :(u?`<a class="chip" href="${esc(u)}" target="_blank" rel="noopener">${inner}</a>`:`<span class="chip">${inner}</span>`);
+ return c}
+function renderCatalog(){
+ const s=S;
+ let h=`<header class="hero ${editing?'editable':''}" ${editing?'data-e="hero"':''}>${s.logo?`<img class="logo" src="${esc(s.logo)}" alt="logo">`:''}<h1>${esc(s.title)}</h1><p>${esc(s.subtitle)}</p></header><div class="page">`;
+ h+=`<section class="blk"><h2 class="sec">Certificaciones <small>Haz clic en un logo para ver el certificado</small></h2><div class="certs">`;
+ s.certs.forEach((c,ci)=>{
+  h+=`<div class="col"><h3 ${editing?`class="editable" data-e="c${ci}"`:''}>${c.logo?`<img src="${esc(c.logo)}" alt="">`:''}${esc(c.name)}</h3><div class="logos">`;
+  if(!c.items.length&&!editing)h+='';
+  c.items.forEach((it,ii)=>{
+   const p=`c${ci}.${ii}`,u=safeUrl(it.url);
+   const body=`<div class="im">${im(it.img,it.name)}</div><span>${esc(it.name)}</span>`;
+   h+=editing?`<div class="logo-item edit editable" data-e="${p}">${body}${ctl(p)}</div>`
+    :(u?`<a class="logo-item" href="${esc(u)}" target="_blank" rel="noopener" title="Ver certificado">${body}</a>`:`<div class="logo-item">${body}</div>`);
+  });
+  h+=`</div>`;
+  if(editing)h+=`<div class="addbar"><button class="add" data-a="addcert" data-p="${ci}">＋ Logo de certificación</button></div>`;
+  else if(!c.items.length)h+=`<div class="empty">Próximamente…</div>`;
+  h+=`</div>`;
+ });
+ h+=`</div></section>`;
+ s.sections.forEach((sec,si)=>{
+  const sp=`s${si}`;
+  h+=`<section class="blk">${editing?`<div class="sctl"><button data-a="sup" data-p="${si}">▲</button><button data-a="sdn" data-p="${si}">▼</button><button data-a="sed" data-p="${si}">✎ Título</button><button data-a="sdel" data-p="${si}">✕</button></div>`:''}`;
+  h+=`<h2 class="sec">${esc(sec.title)} <small>${esc(sec.sub)}</small></h2>`;
+  if(sec.bullets.length)h+=`<ul class="bul">${sec.bullets.map((b,bi)=>`<li>${chip(b.text,b.url,`${sp}.b${bi}`)}</li>`).join('')}</ul>`;
+  h+=`<div class="grid">`;
+  sec.items.forEach((it,ii)=>{
+   const p=`${sp}.i${ii}`,u=safeUrl(it.url);
+   const pim=`<div class="pim">${im(it.img,it.name)}</div>`;
+   const links=it.links.length?`<div class="links">${it.links.map((l,li)=>chip(l.text,l.url,`${p}.l${li}`)).join('')}</div>`:'';
+   h+=`<div class="prod ${editing?'editable':''}" ${editing?`data-e="${p}"`:''}>${!editing&&u?`<a href="${esc(u)}" target="_blank" rel="noopener">${pim}</a>`:pim}<div class="nm">${esc(it.name)}</div>${editing?`<div class="links">${it.links.map(l=>`<span class="chip">${esc(l.text)}${safeUrl(l.url)?' 🔗':''}</span>`).join('')}</div>`:links}${ctl(p)}</div>`;
+  });
+  h+=`</div>`;
+  if(editing)h+=`<div class="addbar"><button class="add" data-a="addprod" data-p="${si}">＋ Producto / imagen</button><button class="add" data-a="addbul" data-p="${si}">＋ Texto con enlace</button></div>`;
+  h+=`</section>`;
+ });
+ if(editing)h+=`<div class="addbar" style="justify-content:center;margin-top:22px"><button class="add" data-a="addsec">＋ Nueva sección</button></div>`;
+ h+=`<footer class="foot ${editing?'editable':''}" ${editing?'data-e="footer"':''}>${esc(s.footer)}</footer></div>`;
+ return h}
+
+function render(){
+ document.body.classList.toggle('editing',editing);
+ document.getElementById('app').innerHTML=renderCatalog();
+ if(!isViewOnly)renderBar();
+}
+function renderBar(){
+ document.getElementById('bar').innerHTML=`<b>🍍 Editor de catálogo</b>
+ <button class="btn ${editing?'on':'pri'}" data-a="toggle">${editing?'👁 Ver como cliente':'✏️ Editar'}</button>
+ <button class="btn org" data-a="pdf">📄 PDF</button>
+ <button class="btn org" data-a="qr">▦ QR / Enlace</button>
+ <button class="btn" data-a="html">⬇ Web (HTML)</button>
+ <button class="btn" data-a="backup">💾 Guardar copia</button>
+ <button class="btn" data-a="restore">📂 Abrir copia</button>
+ <button class="btn dan" data-a="reset">↺</button>`}
+
+/* ---------- rutas de datos ---------- */
+function getObj(p){
+ let m;
+ if(p==='hero')return{o:S,fields:[['logo','Logo de la empresa','image'],['title','Título','text'],['subtitle','Subtítulo','text']],t:'Cabecera'};
+ if(p==='footer')return{o:S,fields:[['footer','Texto de pie de página','text']],t:'Pie de página'};
+ if(m=p.match(/^c(\d+)$/)){return{o:S.certs[m[1]],fields:[['name','Nombre de la empresa','text'],['logo','Logo de la empresa','image']],t:'Columna'}}
+ if(m=p.match(/^c(\d+)\.(\d+)$/)){const a=S.certs[m[1]].items;return{o:a[m[2]],arr:a,i:+m[2],fields:[['img','Logo de la certificación','image'],['name','Nombre','text'],['url','Enlace al certificado (Drive, etc.)','url']],t:'Certificación'}}
+ if(m=p.match(/^s(\d+)\.b(\d+)$/)){const a=S.sections[m[1]].bullets;return{o:a[m[2]],arr:a,i:+m[2],fields:[['text','Texto','text'],['url','Enlace (ficha técnica)','url']],t:'Texto con enlace'}}
+ if(m=p.match(/^s(\d+)\.i(\d+)\.l(\d+)$/)){const a=S.sections[m[1]].items[m[2]].links;return{o:a[m[3]],arr:a,i:+m[3],fields:[['text','Texto','text'],['url','Enlace (ficha técnica)','url']],t:'Enlace de ficha técnica'}}
+ if(m=p.match(/^s(\d+)\.i(\d+)$/)){const a=S.sections[m[1]].items;return{o:a[m[2]],arr:a,i:+m[2],fields:[['img','Imagen','image'],['name','Nombre del producto','text'],['url','Enlace al hacer clic en la imagen (opcional)','url'],['links','Textos con enlace (fichas técnicas)','links']],t:'Producto'}}
+}
+function parentArr(p){const g=getObj(p);return g&&g.arr}
+
+/* ---------- modal editor ---------- */
+function modal(html){const o=document.createElement('div');o.className='ov';o.innerHTML=`<div class="modal">${html}</div>`;
+ o.addEventListener('mousedown',e=>{if(e.target===o)o.remove()});document.body.append(o);return o}
+function shrink(file,max=700){return new Promise((res,rej)=>{
+ const r=new FileReader();r.onerror=rej;r.onload=()=>{const i=new Image();i.onerror=rej;i.onload=()=>{
+  const k=Math.min(1,max/Math.max(i.width,i.height));const c=document.createElement('canvas');c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);
+  c.getContext('2d').drawImage(i,0,0,c.width,c.height);
+  const png=/png|svg|gif/.test(file.type);res(png?c.toDataURL('image/png'):c.toDataURL('image/jpeg',.82))};i.src=r.result};r.readAsDataURL(file)})}
+function openEditor(p){
+ const g=getObj(p);if(!g)return;const o=g.o;
+ const m=modal(`<h3>✏️ ${g.t}</h3><div id="f"></div><div class="acts"><button class="btn pri" id="ok">Listo</button></div>`);
+ const f=m.querySelector('#f');
+ g.fields.forEach(([k,label,type])=>{
+  const w=document.createElement('div');w.innerHTML=`<label>${label}</label>`;
+  if(type==='image'){
+   w.insertAdjacentHTML('beforeend',`<div class="imgp"></div><div class="row" style="margin-top:6px"><input type="file" accept="image/*"><button class="btn dan" type="button">Quitar</button></div><input type="url" placeholder="…o pega un enlace de imagen https://" value="${esc(String(o[k]||'').startsWith('data:')?'':o[k]||'')}">`);
+   const pv=w.querySelector('.imgp'),file=w.querySelector('input[type=file]'),url=w.querySelector('input[type=url]');
+   const show=()=>pv.innerHTML=o[k]?`<img src="${esc(o[k])}">`:'<span style="color:#9ca3af">Sin imagen</span>';show();
+   file.onchange=async()=>{if(file.files[0]){o[k]=await shrink(file.files[0]);url.value='';show()}};
+   url.oninput=()=>{o[k]=url.value.trim();show()};
+   w.querySelector('.btn.dan').onclick=()=>{o[k]='';url.value='';show()};
+   w.insertAdjacentHTML('beforeend','<div class="hint">Sube el archivo (se reduce automáticamente) o usa un enlace público.</div>');
+  }else if(type==='links'){
+   const box=document.createElement('div');w.append(box);
+   const draw=()=>{box.innerHTML='';o.links.forEach((l,i)=>{const r=document.createElement('div');r.className='row';
+    r.innerHTML=`<input type="text" placeholder="Texto" value="${esc(l.text)}"><input type="url" placeholder="Enlace ficha técnica" value="${esc(l.url)}"><button class="btn dan" type="button">✕</button>`;
+    const[a,b,d]=r.children;a.oninput=()=>l.text=a.value;b.oninput=()=>l.url=b.value.trim();d.onclick=()=>{o.links.splice(i,1);draw()};box.append(r)});
+    const add=document.createElement('button');add.className='btn';add.type='button';add.textContent='＋ Añadir texto con enlace';add.onclick=()=>{o.links.push({text:'Nuevo',url:''});draw()};box.append(add)};draw();
+  }else{
+   const i=document.createElement('input');i.type=type==='url'?'url':'text';i.value=o[k]||'';i.placeholder=type==='url'?'https://drive.google.com/…':'';i.oninput=()=>o[k]=type==='url'?i.value.trim():i.value;w.append(i);
+   if(type==='url')w.insertAdjacentHTML('beforeend','<div class="hint">En Drive: Compartir → "Cualquier persona con el enlace" → Copiar enlace.</div>')}
+  f.append(w)});
+ m.querySelector('#ok').onclick=()=>{m.remove();commit()};
+ m.addEventListener('mousedown',e=>{if(e.target===m)commit()});
+}
+
+/* ---------- exportar ---------- */
+function download(name,text,type='text/html'){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+function standaloneHTML(){
+ const was=editing;editing=false;const body=renderCatalog();editing=was;
+ return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(S.title)}</title><style>${document.getElementById('css').textContent}</style></head><body>${body}</body></html>`}
+function showQR(){
+ const m=modal(`<h3>▦ QR y enlace</h3><label>Dirección pública de tu catálogo</label><input type="url" id="u" placeholder="https://tu-catalogo.netlify.app" value="${esc(S.pdfUrl)}"><div class="hint">Publica el archivo "Web (HTML)" (Netlify Drop, GitHub Pages, tu hosting…) y pega aquí su dirección. También puedes usar el enlace de un PDF subido a Drive.</div><div class="qrbox" id="q" style="margin-top:14px"></div><div class="acts"><button class="btn" id="cp">Copiar enlace</button><button class="btn org" id="dl">Descargar QR</button><button class="btn pri" id="cl">Cerrar</button></div>`);
+ const u=m.querySelector('#u'),q=m.querySelector('#q');let data='';
+ const draw=()=>{S.pdfUrl=u.value.trim();save();const url=safeUrl(S.pdfUrl);q.innerHTML='';data='';if(!url)return;
+  if(typeof qrcode==='undefined'){q.textContent='No se pudo cargar la librería QR (¿sin internet?)';return}
+  const c=qrcode(0,'M');c.addData(url);c.make();data=c.createDataURL(8,3);q.innerHTML=`<img src="${data}">`};
+ u.oninput=draw;draw();
+ m.querySelector('#cp').onclick=()=>{navigator.clipboard?.writeText(S.pdfUrl);toast('Enlace copiado')};
+ m.querySelector('#dl').onclick=()=>{if(!data)return toast('Escribe primero la dirección');const a=document.createElement('a');a.href=data;a.download='qr-catalogo.png';a.click()};
+ m.querySelector('#cl').onclick=()=>m.remove()}
+
+/* ---------- eventos ---------- */
+document.addEventListener('click',async e=>{
+ const b=e.target.closest('[data-a]');
+ if(b){e.preventDefault();e.stopPropagation();const a=b.dataset.a,p=b.dataset.p;
+  switch(a){
+   case'toggle':editing=!editing;render();break;
+   case'pdf':{const was=editing;editing=false;render();toast('En el cuadro de impresión elige "Guardar como PDF". Los enlaces seguirán activos.');setTimeout(()=>{print();editing=was;render()},700);break}
+   case'qr':showQR();break;
+   case'html':download('catalogo.html',standaloneHTML());break;
+   case'backup':download('catalogo-copia.json',JSON.stringify(S),'application/json');break;
+   case'restore':{const i=document.createElement('input');i.type='file';i.accept='.json';i.onchange=async()=>{try{S=JSON.parse(await i.files[0].text());commit();toast('Copia cargada')}catch(x){toast('Archivo no válido')}};i.click();break}
+   case'reset':if(confirm('¿Borrar todo y volver al catálogo inicial?')){S=JSON.parse(JSON.stringify(DEFAULT));commit()}break;
+   case'l':case'r':{const arr=parentArr(p);const g=getObj(p);if(arr)mv(arr,g.i,a==='l'?-1:1);break}
+   case'd':{const arr=parentArr(p);const g=getObj(p);if(arr&&confirm('¿Eliminar?')){arr.splice(g.i,1);commit()}break}
+   case'addcert':S.certs[p].items.push(L('Nueva'));commit();openEditor(`c${p}.${S.certs[p].items.length-1}`);break;
+   case'addprod':S.sections[p].items.push(P('Nuevo producto'));commit();openEditor(`s${p}.i${S.sections[p].items.length-1}`);break;
+   case'addbul':S.sections[p].bullets.push({text:'Nuevo texto',url:''});commit();openEditor(`s${p}.b${S.sections[p].bullets.length-1}`);break;
+   case'addsec':S.sections.push({title:'Nueva sección',sub:'',bullets:[],items:[]});commit();sedit(S.sections.length-1);break;
+   case'sup':mv(S.sections,+p,-1);break;
+   case'sdn':mv(S.sections,+p,1);break;
+   case'sdel':if(confirm('¿Eliminar la sección completa?')){S.sections.splice(p,1);commit()}break;
+   case'sed':sedit(+p);break;
+  }return}
+ const ed=editing&&e.target.closest('[data-e]');
+ if(ed){e.preventDefault();openEditor(ed.dataset.e)}
+});
+function sedit(i){const s=S.sections[i];const m=modal(`<h3>Título de la sección</h3><label>Título</label><input type="text" id="t" value="${esc(s.title)}"><label>Subtítulo</label><input type="text" id="s" value="${esc(s.sub)}"><div class="acts"><button class="btn pri">Listo</button></div>`);
+ m.querySelector('.btn').onclick=()=>{s.title=m.querySelector('#t').value;s.sub=m.querySelector('#s').value;m.remove();commit()}}
+document.addEventListener('click',e=>{if(editing&&e.target.closest('a'))e.preventDefault()},true);
+render();
+</script>
+</body>
+</html>
