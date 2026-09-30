@@ -17,12 +17,13 @@ function createStore(dir) {
 
   return {
     listTasks: () => db.tasks,
-    addTask({ title, notes = '', due = null }) {
+    addTask({ title, notes = '', due = null, remindBefore = 0 }) {
       const task = {
         id: crypto.randomUUID(),
         title,
         notes,
         due,
+        remindBefore,
         done: false,
         notified: false,
         createdAt: new Date().toISOString(),
@@ -34,9 +35,9 @@ function createStore(dir) {
     updateTask(id, patch) {
       const task = db.tasks.find((t) => t.id === id);
       if (!task) return null;
-      for (const k of ['title', 'notes', 'due', 'done']) if (k in patch) task[k] = patch[k];
-      // Si cambia la fecha, se vuelve a notificar.
-      if ('due' in patch) task.notified = false;
+      for (const k of ['title', 'notes', 'due', 'remindBefore', 'done']) if (k in patch) task[k] = patch[k];
+      // Si cambia la fecha o la antelación, se vuelve a notificar.
+      if ('due' in patch || 'remindBefore' in patch) task.notified = false;
       save();
       return task;
     },

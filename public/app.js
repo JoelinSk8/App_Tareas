@@ -29,6 +29,13 @@ function fmt(iso) {
   return new Date(iso).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' });
 }
 
+function remindLabel(min) {
+  if (!min) return 'a la hora';
+  if (min % 1440 === 0) return `${min / 1440} ${min === 1440 ? 'día' : 'días'} antes`;
+  if (min % 60 === 0) return `${min / 60} ${min === 60 ? 'hora' : 'horas'} antes`;
+  return `${min} min antes`;
+}
+
 function render() {
   const list = $('list');
   list.textContent = '';
@@ -54,7 +61,7 @@ function render() {
     if (t.due) {
       const d = document.createElement('div');
       d.className = 'd' + (!t.done && Date.parse(t.due) < Date.now() ? ' overdue' : '');
-      d.textContent = '⏰ ' + fmt(t.due);
+      d.textContent = '⏰ ' + fmt(t.due) + ' · 🔔 ' + remindLabel(t.remindBefore);
       body.append(d);
     }
 
@@ -75,7 +82,7 @@ async function update(id, patch) { await api('PATCH', '/tasks/' + id, patch); lo
 $('task-form').onsubmit = async (e) => {
   e.preventDefault();
   const due = $('due').value ? new Date($('due').value).toISOString() : null;
-  await api('POST', '/tasks', { title: $('title').value, due });
+  await api('POST', '/tasks', { title: $('title').value, due, remindBefore: Number($('remind').value) });
   e.target.reset();
   load();
 };

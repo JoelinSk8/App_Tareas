@@ -81,3 +81,41 @@ test('elimina suscripciones caducadas (410)', async () => {
   assert.deepStrictEqual(t.store.listSubscriptions().map((s) => s.endpoint), ['https://push.example/ok']);
   t.close();
 });
+
+test('avisa con la antelación elegida (10 min antes)', async () => {
+  const t = await setup();
+  await t.call('POST', '/subscribe', sub('a'));
+  const due = new Date(Date.now() + 8 * 60000).toISOString(); // vence en 8 min
+  const early = (await t.call('POST', '/tasks', { title: '10 antes', due, remindBefore: 10 })).body;
+  await t.call('POST', '/tasks', { title: '5 antes', due, remindBefore: 5 });
+  await t.call('POST', '/tasks', { title: 'a la hora', due });
+
+  // Hoy faltan 8 min: solo toca la de 10 min antes.
+  assert.strictEqual(await t.ctx.checkDue(), 1);
+  assert.strictEqual(t.sent[0].body.body, '10 antes');
+  assert.strictEqual(t.sent[0].body.title, 'Tarea en 10 minutos');
+
+  // 4 min antes del vencimiento: toca la de 5 min.
+  assert.strictEqual(await t.ctx.checkDue(Date.parse(due) - 4 * 60000), 1);
+  assert.strictEqual(t.sent[1].body.body, '5 antes');
+
+  // Al vencer: la de "a la hora".
+  assert.strictEqual(await t.ctx.checkDue(Date.parse(due) + 1000), 1);
+  assert.strictEqual(t.sent[2].body.title, 'Tarea pendiente');
+
+  // Cambiar la antelación reprograma el aviso.
+  await t.call('PATCH', '/tasks/' + early.id, { remindBefore: 30 });
+  assert.strictEqual((await t.call('GET', '/tasks')).body.find((x) => x.id === early.id).notified, false);
+  t.close();
+});
+
+test('remindBefore inválido se rechaza', async () => {
+  const t = await setup();
+  for (const v of [-1, 1.5, 'x', 99999]) {
+    assert.strictEqual((await t.call('POST', '/tasks', { title: 'x', remindBefore: v })).status, 400);
+  }
+  const ok = (await t.call('POST', '/tasks', { title: 'x' })).body;
+  assert.strictEqual(ok.remindBefore, 0);
+  assert.strictEqual((await t.call('PATCH', '/tasks/' + ok.id, { remindBefore: -5 })).status, 400);
+  t.close();
+});

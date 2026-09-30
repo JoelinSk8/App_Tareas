@@ -8,6 +8,17 @@ const { createStore } = require('./store');
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, '..', 'data');
 const APP_PASSWORD = process.env.APP_PASSWORD || '';
 const CHECK_EVERY_MS = 30_000;
+const MAX_REMIND_MIN = 7 * 24 * 60;
+
+// Minutos de antelación válidos: entero entre 0 y 7 días.
+const validRemind = (v) => Number.isInteger(v) && v >= 0 && v <= MAX_REMIND_MIN;
+
+function whenText(min) {
+  if (min <= 0) return 'ahora';
+  if (min % 1440 === 0) return `en ${min / 1440} ${min === 1440 ? 'día' : 'días'}`;
+  if (min % 60 === 0) return `en ${min / 60} ${min === 60 ? 'hora' : 'horas'}`;
+  return `en ${min} minutos`;
+}
 
 // Claves VAPID: desde variables de entorno o generadas y guardadas en data/.
 function loadVapid() {
@@ -45,7 +56,8 @@ function createApp({ store, vapid, sender = webpush }) {
   api.get('/tasks', (req, res) => res.json(store.listTasks()));
 
   api.post('/tasks', (req, res) => {
-    const { title, notes, due } = req.body || {};
+    const { title, notes, due, remindBefore = 0 } = req.body || {};
+    if (!validRemind(remindBefore)) return res.status(400).json({ error: 'invalid remindBefore' });
     if (typeof title !== 'string' || !title.trim()) return res.status(400).json({ error: 'title required' });
     if (due != null && Number.isNaN(Date.parse(due))) return res.status(400).json({ error: 'invalid due' });
     res.status(201).json(
@@ -53,6 +65,7 @@ function createApp({ store, vapid, sender = webpush }) {
         title: title.trim().slice(0, 200),
         notes: typeof notes === 'string' ? notes.slice(0, 2000) : '',
         due: due ? new Date(due).toISOString() : null,
+        remindBefore,
       })
     );
   });
@@ -66,6 +79,10 @@ function createApp({ store, vapid, sender = webpush }) {
     }
     if ('notes' in b) patch.notes = typeof b.notes === 'string' ? b.notes.slice(0, 2000) : '';
     if ('done' in b) patch.done = !!b.done;
+    if ('remindBefore' in b) {
+      if (!validRemind(b.remindBefore)) return res.status(400).json({ error: 'invalid remindBefore' });
+      patch.remindBefore = b.remindBefore;
+    }
     if ('due' in b) {
       if (b.due && Number.isNaN(Date.parse(b.due))) return res.status(400).json({ error: 'invalid due' });
       patch.due = b.due ? new Date(b.due).toISOString() : null;
@@ -118,12 +135,20 @@ function createApp({ store, vapid, sender = webpush }) {
     return sent;
   }
 
-  // Revisa tareas vencidas y avisa una sola vez por tarea.
+  // Avisa una sola vez por tarea, cuando llega (fecha - antelación elegida).
   async function checkDue(now = Date.now()) {
-    const due = store.listTasks().filter((t) => !t.done && !t.notified && t.due && Date.parse(t.due) <= now);
+    const due = store
+      .listTasks()
+      .filter((t) => !t.done && !t.notified && t.due && Date.parse(t.due) - (t.remindBefore || 0) * 60000 <= now);
     for (const t of due) {
       store.markNotified(t.id);
-      await broadcast({ title: 'Tarea pendiente', body: t.title, url: '/', tag: t.id });
+      const min = t.remindBefore || 0;
+      await broadcast({
+        title: min > 0 ? `Tarea ${whenText(min)}` : 'Tarea pendiente',
+        body: t.title,
+        url: '/',
+        tag: t.id,
+      });
     }
     return due.length;
   }

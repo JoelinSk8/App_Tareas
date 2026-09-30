@@ -37,7 +37,7 @@ Las notificaciones push solo funcionan en **HTTPS** (`localhost` está exento). 
 ## Cómo funciona
 
 1. Al activar, el navegador crea una suscripción push que se guarda en el servidor.
-2. Cada 30 s el servidor busca tareas pendientes con fecha/hora vencida y envía un push una sola vez por tarea.
+2. Cada tarea tiene fecha/hora y una antelación elegible (a la hora, 5, 10, 15, 30 min, 1 hora o 1 día antes). Cada 30 s el servidor busca las tareas pendientes cuyo momento de aviso (fecha − antelación) ya llegó y envía un push una sola vez por tarea.
 3. El service worker (`public/sw.js`) muestra la notificación; al pulsarla abre/enfoca la app.
 4. Las suscripciones caducadas (404/410) se eliminan automáticamente.
 

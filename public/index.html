@@ -20,7 +20,16 @@
 
     <form id="task-form">
       <input id="title" placeholder="Nueva tarea…" required maxlength="200" autocomplete="off">
-      <input id="due" type="datetime-local" title="Recordatorio">
+      <input id="due" type="datetime-local" title="Fecha y hora de la tarea">
+      <select id="remind" title="Avisarme antes">
+        <option value="0">Avisar a la hora</option>
+        <option value="5">5 min antes</option>
+        <option value="10">10 min antes</option>
+        <option value="15">15 min antes</option>
+        <option value="30">30 min antes</option>
+        <option value="60">1 hora antes</option>
+        <option value="1440">1 día antes</option>
+      </select>
       <button type="submit">Añadir</button>
     </form>
 
